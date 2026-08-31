@@ -1,18 +1,35 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">PERFUMARIA CARBOREZAN</a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url('perfume') }}">Loja</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('avaliacoes') }}">Resenhas de Perfumes</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aromatica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <img src="img/logo_traxchc.png" alt="TraxCHC" class="brand-logo">
+        </a>
+
+        <a class="navbar-toggler" type="a" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </a>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+          <ul class="navbar-nav gap-lg-4">
+            <li class="nav-item"><a class="nav-link" href="index.php">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href={{ url('perfume') }}>COMPRA</a></li>
+            <li class="nav-item"><a class="nav-link" href={{ url('avaliacoes') }}>AVALIAÇÕES</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </nav>
+  </header>

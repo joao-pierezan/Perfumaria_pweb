@@ -6,7 +6,7 @@ use App\Models\Perfume;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Aluno>
+ * @extends Factory<Perfume>
  */
 class PerfumeFactory extends Factory
 {

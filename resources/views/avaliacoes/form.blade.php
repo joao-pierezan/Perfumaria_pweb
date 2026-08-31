@@ -28,7 +28,7 @@
             </div>
             <div class="col-6">
                 <label for="texto">Resenha</label>
-                <text  type="text" name="texto" class="form-control" value="{{ old('texto', $data->texto ?? '') }}">
+                <textarea type="text" name="texto" class="form-control" value="{{ old('texto', $data->texto ?? '') }}"></textarea>
             </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>

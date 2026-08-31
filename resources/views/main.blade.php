@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <h4>Bem vindo ao Perfumaria Carborezan</h4>
     <!-- Sidebar -->
     <div>
         @include('sidebar')
