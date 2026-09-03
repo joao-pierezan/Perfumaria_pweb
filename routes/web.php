@@ -68,3 +68,30 @@ Route::post(
     '/avaliacoes/search', 
     [App\Http\Controllers\AvaliacoesController::class, 'search']
 )->name('avaliacoes.search');
+
+//rotas para usuarios
+
+Route::get('/usuarios', [UsuariosController::class, 'index']);
+Route::get('/usuarios/create', [UsuariosController::class, 'create']);
+Route::post(
+    '/usuarios/store',
+    [UsuariosController::class, 'store']
+)->name('usuarios.store');
+
+Route::get('/usuarios/edit/{id}',
+    [UsuariosController::class, 'edit']
+)->name('usuarios.edit');
+Route::put(
+    '/usuarios/update/{id}',
+    [UsuariosController::class, 'update']
+)->name('usuarios.update');
+
+Route::delete(
+    '/usuarios/{id}',
+    [UsuariosController::class, 'usuarios']
+)->name('usuarios.destroy');
+
+Route::post(
+    '/perfume/search',
+    [UsuariosController::class, 'search']
+)->name('perfume.search');
