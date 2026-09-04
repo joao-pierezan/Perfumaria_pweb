@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg ">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href={{url('home')}}>
-          <img src="img/logo_traxchc.png" alt="Aromatica" class="brand-logo">
+          <img src="{{ asset('img/aromatica.jpg') }}" alt="Photo">
         </a>
 
         <a class="navbar-toggler" type="a" data-bs-toggle="collapse" data-bs-target="#mainNavbar">

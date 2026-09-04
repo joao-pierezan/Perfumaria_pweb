@@ -36,10 +36,10 @@
             <div class="card h-100 border shadow-sm">
                 <!-- Container da Imagem com Altura Fixa -->
                 <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 180px;">
-                    <img src="./imagens/{{ $item->marca }}.webp"
-                         alt="{{ $item->marca }}" 
-                         class="img-fluid mh-100" 
-                         style="object-fit: contain;">
+                <img src="{{ asset('imagens/' . $item->marca . '.webp') }}"
+                    alt="{{ $item->marca }}" 
+                    class="img-fluid mh-100" 
+                    style="object-fit: contain;">
                 </div>
 
                 <!-- Detalhes do Produto -->

@@ -27,8 +27,7 @@ class PerfumeController extends Controller
             'marca' => 'required',
             'preco' => 'required',
             'familia_olfativa' => 'required',
-            'volume' => 'required',
-            'ficha_tecnica_id' => 'required|unique:perfumes,ficha_tecnica_id',
+            'volume' => 'required'
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'marca.required' => "O :attribute é obrigatorio",
