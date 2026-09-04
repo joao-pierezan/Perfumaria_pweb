@@ -32,7 +32,9 @@
                 <!-- Bloco individual da Resenha -->
                 <div class="card mb-4 border-secondary">
                     <div class="card-header d-flex justify-content-between align-items-center bg-light">
-                        <h5 class="m-0"><strong>{{ $item->perfume }}</strong></h5>
+                        <div>
+                            <h5 class="m-0 d-inline"><strong>{{ $item->perfume }}</strong></h5>
+                        </div>
                         <span class="fs-6"><strong>Nota:</strong> {{ $item->nota }}</span>
                     </div>
                     
@@ -41,7 +43,10 @@
                     </div>
                     
                     <div class="card-footer text-muted d-flex justify-content-end gap-2 align-items-center">
-                        <small class="me-auto">ID da Avaliação: {{ $item->id }}</small>
+                        <small class="me-auto">
+                            <strong>Autor:</strong> {{ $item->usuario->nome ?? 'Anônimo' }} | 
+                            ID da Avaliação: {{ $item->id }}
+                        </small>
                         
                         <!-- Botões de Ação -->
                         <a class="btn btn-sm btn-outline-warning" title="Editar" href="{{ route('avaliacoes.edit', $item->id) }}">Editar</a>

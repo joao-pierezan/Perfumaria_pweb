@@ -13,7 +13,7 @@ class PerfumeFactory extends Factory
 {
     public function definition(): array
     {
-        $marcas = ['Dior', 'Chanel', 'Tom Ford', 'Natura', 'O Boticário', 'Yves Saint Laurent', 'Carolina Herrera', 'Paco Rabanne'];
+        $marcas = ['Dior', 'Chanel', 'Tom Ford', 'Natura', 'O Boticario', 'Yves Saint Laurent', 'Carolina Herrera', 'Paco Rabanne'];
         $familias = ['Amadeirado', 'Cítrico', 'Floral', 'Oriental', 'Chipre', 'Aromático', 'Gourmand', 'Aquático'];
         $volumes = ['30ml', '50ml', '75ml', '100ml', '200ml'];
 

@@ -4,61 +4,72 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Avaliacao;
+use App\Models\Usuario;
+use App\Models\Perfume;
 
 class AvaliacoesController extends Controller
 {
     public function index()
     {
-        $dados = Avaliacao::all();
+
+        $dados = Avaliacao::with('usuario')->get();
 
         return view('avaliacoes.list')->with(['dados' => $dados]);
     }
 
     public function create()
-    {
-        return view('avaliacoes.form');
-    }
+        {
+            $usuarios = Usuario::all();
+            $perfumes = Perfume::all(); // 2. Busque os perfumes no banco
+            $data = new Avaliacao();
+
+            // 3. Inclua 'perfumes' no compact
+            return view('avaliacoes.form', compact('usuarios', 'perfumes', 'data'));
+        }
 
     public function validateForm(Request $request)
     {
         $request->validate([
             'perfume' => 'required',
-            'nota' => 'required',
-            'texto' => 'required'
+            'nota' => 'required|numeric|min:0|max:10',
+            'texto' => 'required',
+            'autor' => 'required'
         ], [
-            'perfume.required' => "O :attribute é obrigatorio",
-            'nota.required' => "O :attribute é obrigatorio",
-            'texto.required' => "O :attribute é obrigatorio"
+            'perfume.required' => "O :attribute é obrigatório",
+            'nota.required' => "A :attribute é obrigatória",
+            'texto.required' => "A resenha é obrigatória",
+            'autor.required' => "O autor é obrigatório"
         ]);
     }
 
     public function store(Request $request)
     {
-        //dd($request->all());
         $this->validateForm($request);
 
         Avaliacao::create($request->all());
 
-        return redirect('avaliacoes')->with("success", 'Registro Salvo com sucesso!');
+        return redirect('avaliacoes')->with("success", 'Registro salvo com sucesso!');
     }
 
     public function edit($id)
-    {
-        $data = Avaliacao::findOrFail($id);
+        {
+            $data = Avaliacao::findOrFail($id);
+            $usuarios = Usuario::all();
+            $perfumes = Perfume::all(); // 2. Busque os perfumes ao editar também
 
-        // dd($data);
-        //return view('Perfume.form')->with(['data' => $data]);
-        return view('avaliacoes.form', compact('data'));
-    }
+            // 3. Inclua 'perfumes' no compact
+            return view('avaliacoes.form', compact('data', 'usuarios', 'perfumes'));
+        }
+
+    // ...
 
     public function update(Request $request, $id)
     {
-        //dd($request->all());
         $this->validateForm($request);
 
         Avaliacao::findOrFail($id)->update($request->all());
 
-        return redirect('avaliacoes')->with("success", 'Registro Atualizado com sucesso!');
+        return redirect('avaliacoes')->with("success", 'Registro atualizado com sucesso!');
     }
 
     public function destroy($id)
@@ -71,13 +82,13 @@ class AvaliacoesController extends Controller
     public function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Avaliacao::where(
+            $dados = Avaliacao::with('usuario')->where(
                 $request->tipo,
                 'like',
                 "%$request->valor%"
             )->get();
         } else {
-            $dados = Avaliacao::all();
+            $dados = Avaliacao::with('usuario')->get();
         }
 
         return view('avaliacoes.list', compact('dados'));

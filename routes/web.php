@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\perfumeController;
 use App\Http\Controllers\UsuarioController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\UsuarioController;
 Route::get('/', function () {
     return view('main');
 });
-
+Route::get('/home', [HomeController::class, 'index']);
 // Rotas para Perfume
 Route::get('/perfume', [PerfumeController::class, 'index']);
 Route::get('/perfume/create', [PerfumeController::class, 'create']);

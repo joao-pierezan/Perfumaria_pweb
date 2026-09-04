@@ -15,8 +15,9 @@ return new class extends Migration
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->id();
             $table->string('perfume');
-            $table->decimal('nota',2,1);
+            $table->decimal('nota',3,1);
             $table->string('texto');
+            $table->string('autor');
             $table->timestamps();
         });
     }
