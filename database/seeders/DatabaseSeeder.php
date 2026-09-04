@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\Perfume::factory(10)->create();
         \App\Models\Avaliacao::factory(10)->create();
+        \App\Models\Usuario::factory(10)->create();
+
     }
 }

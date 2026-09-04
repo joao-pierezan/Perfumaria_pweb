@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\perfumeController;
+use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('main');
@@ -28,7 +29,7 @@ Route::delete(
     [PerfumeController::class, 'destroy']
 )->name('perfume.destroy');
 
-Route::post(
+Route::get(
     '/perfume/search',
     [PerfumeController::class, 'search']
 )->name('perfume.search');
@@ -71,27 +72,29 @@ Route::post(
 
 //rotas para usuarios
 
-Route::get('/usuarios', [UsuariosController::class, 'index']);
-Route::get('/usuarios/create', [UsuariosController::class, 'create']);
+Route::get('/usuario', [UsuarioController::class, 'index']);
+Route::get('/usuario/create', [UsuarioController::class, 'create']);
 Route::post(
-    '/usuarios/store',
-    [UsuariosController::class, 'store']
-)->name('usuarios.store');
+    '/usuario/store',
+    [UsuarioController::class, 'store']
+)->name('usuario.store');
 
-Route::get('/usuarios/edit/{id}',
-    [UsuariosController::class, 'edit']
-)->name('usuarios.edit');
+Route::get('/usuario/edit/{id}',
+    [UsuarioController::class, 'edit']
+)->name('usuario.edit');
 Route::put(
-    '/usuarios/update/{id}',
-    [UsuariosController::class, 'update']
-)->name('usuarios.update');
+    '/usuario/update/{id}',
+    [UsuarioController::class, 'update']
+)->name('usuario.update');
 
 Route::delete(
-    '/usuarios/{id}',
-    [UsuariosController::class, 'usuarios']
-)->name('usuarios.destroy');
+    '/usuario/{id}',
+    [UsuarioController::class, 'destroy']
+)->name('usuario.destroy');
 
 Route::post(
     '/perfume/search',
-    [UsuariosController::class, 'search']
-)->name('perfume.search');
+    [UsuarioController::class, 'search']
+)->name('usuario.search');
+Route::get('/perfume/{id}', [PerfumeController::class, 'show'])->name('perfume.show');
+

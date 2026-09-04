@@ -16,4 +16,9 @@ class Perfume extends Model
         'familia_olfativa',
         'volume'
     ];
+
+    public function fichaTecnica()
+    {
+        return $this->belongsTo(FichaTecnica::class);
+    }
 }

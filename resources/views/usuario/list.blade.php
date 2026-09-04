@@ -4,7 +4,7 @@
     <div class="row">
 
         <h3>Listagem de Usuarios</h3>
-        <form action="{{ route('usuarios.search') }}" method="post">
+        <form action="{{ route('usuario.search') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col-2">
@@ -12,6 +12,7 @@
                     <select name="tipo" class="form-select">
                         <option value="nome">Nome</option>
                         <option value="cpf">CPF</option>
+                        <option value="cpf">Email</option>
                         <option value="telefone">Telefone</option>
                     </select>
                 </div>
@@ -21,7 +22,7 @@
                 </div>
                 <div class="col-5">
                     <button type="submit" class="btn btn-primary">Buscar</button>
-                    <a href="{{ url('usuarios/create') }}" class="btn btn-success"> Novo</a>
+                    <a href="{{ url('usuario/create') }}" class="btn btn-success"> Novo</a>
                 </div>
             </div>
         </form>
@@ -36,8 +37,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Telefone</th>
-                    <th scope="col">Categoria</th>
                     <th scope="col">Ação</th>
                     <th scope="col">Ação</th>
                 </tr>
@@ -48,13 +49,13 @@
                         <th scope='row'>{{ $item->id }}</th>
                         <td>{{ $item->nome }}</td>
                         <td>{{ $item->cpf }}</td>
+                        <td>{{ $item->email }}</td>
                         <td>{{ $item->telefone }}</td>
-                        <td>{{ $item->categoria->nome }}</td>
                         <td>
-                            <a class='btn btn-warning' title='Editar' href="{{ route('usuarios.edit', $item->id) }}">Editar</a>
+                            <a class='btn btn-warning' title='Editar' href="{{ route('usuario.edit', $item->id) }}">Editar</a>
                         </td>
                         <td>
-                            <form action="{{ route('usuarios.destroy', $item->id) }}" method="post">
+                            <form action="{{ route('usuario.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class='btn btn-danger' title='Exclur'

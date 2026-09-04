@@ -41,11 +41,23 @@
                     <!-- Detalhes do Produto -->
                     <div class="card-body d-flex flex-column">
                         <small class="text-muted text-uppercase fw-bold">{{ $item->marca }}</small>
-                        <h5 class="card-title my-1">{{ $item->nome }}</h5>
                         
-                        <div class="mb-3">
+                        <!-- Nome transformado em link clicável para os detalhes -->
+                        <h5 class="card-title my-1">
+                            <a href="{{ route('perfume.show', $item->id) }}" class="text-decoration-none text-dark">
+                                {{ $item->nome }}
+                            </a>
+                        </h5>
+                        
+                        <div class="mb-2">
                             <span class="badge bg-secondary">{{ $item->familia_olfativa }}</span>
                             <small class="text-muted ms-1">{{ $item->volume }}ml</small>
+                        </div>
+
+                        <!-- Exibindo dados da Ficha Técnica (Relacionamento 1:1 em vez do ID) -->
+                        <div class="bg-light p-2 rounded mb-3 border" style="font-size: 0.85rem;">
+                            <span class="d-block text-truncate"><strong>Topo:</strong> {{ $item->fichaTecnica->notas_topo ?? 'N/A' }}</span>
+                            <span class="d-block text-truncate"><strong>Coração:</strong> {{ $item->fichaTecnica->notas_coracao ?? 'N/A' }}</span>
                         </div>
 
                         <div class="mt-auto pt-2">

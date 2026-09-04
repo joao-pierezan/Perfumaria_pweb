@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Aluno;
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\CategoriaAluno;
 
-class AlunoFactory extends Factory
+class UsuarioFactory extends Factory
 {
     public function definition(): array
     {
         return [
             'nome' => fake()->name(),
             'cpf' => fake()->numerify('###.###.###-##'),
+            'email'=> fake()->email(),
             'telefone' => fake()->phoneNumber(),
-            'categoria' => random_int(0, 1)
         ];
     }
 }

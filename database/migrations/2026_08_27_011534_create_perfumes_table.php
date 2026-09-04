@@ -15,9 +15,10 @@ return new class extends Migration
         $table->id();
         $table->string('nome');
         $table->string('marca');
-        $table->decimal('preco', 10, 2); // Campo para dinheiro
+        $table->decimal('preco', 8, 2);
         $table->string('familia_olfativa');
-        $table->string('volume'); // Usando string para permitir coisas como "100ml"
+        $table->string('volume');
+        $table->foreignId('ficha_tecnica_id')->unique()->constrained('ficha_tecnicas')->onDelete('cascade');
         $table->timestamps();
     });
 }

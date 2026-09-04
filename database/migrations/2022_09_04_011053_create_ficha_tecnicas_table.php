@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('usuarios', function (Blueprint $table) {
-        $table->id();
-        $table->string('nome');
-        $table->string('cpf');
-        $table->string('email');
-        $table->string('telefone');
-        $table->timestamps();
-    });
+        Schema::create('ficha_tecnicas', function (Blueprint $table) {
+            $table->id();
+            $table->string('notas_topo');
+            $table->string('notas_coracao');
+            $table->string('notas_base');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('ficha_tecnicas');
     }
 };

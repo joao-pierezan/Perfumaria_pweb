@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Perfume;
+use App\Models\FichaTecnica; // <-- Adicione esta linha no topo do controller
 
 class PerfumeController extends Controller
 {
     public function index()
     {
-        $dados = Perfume::all();
-
-        return view('perfume.list')->with(['dados' => $dados]);
+       $dados = Perfume::with('fichaTecnica')->get(); // ou Perfume::with('fichaTecnica')->get();
+       return view('perfume.list', compact('dados'));
     }
 
     public function create()
     {
-        return view('perfume.form');
+        $fichas = FichaTecnica::all();
+        return view('perfume.form', compact('fichas'));
     }
 
     public function validateForm(Request $request)
@@ -27,12 +28,14 @@ class PerfumeController extends Controller
             'preco' => 'required',
             'familia_olfativa' => 'required',
             'volume' => 'required',
+            'ficha_tecnica_id' => 'required|unique:perfumes,ficha_tecnica_id',
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'marca.required' => "O :attribute é obrigatorio",
             'preco.required' => "O :attribute é obrigatorio",
             'familia_olfativa.required' => "O :attribute é obrigatorio",
             'volume.required' => "O :attribute é obrigatorio",
+
         ]);
     }
 
@@ -49,10 +52,8 @@ class PerfumeController extends Controller
     public function edit($id)
     {
         $data = Perfume::findOrFail($id);
-
-        // dd($data);
-        //return view('Perfume.form')->with(['data' => $data]);
-        return view('perfume.form', compact('data'));
+        $fichas = FichaTecnica::all();
+        return view('perfume.form', compact('data', 'fichas'));
     }
 
     public function update(Request $request, $id)
@@ -85,5 +86,13 @@ class PerfumeController extends Controller
         }
 
         return view('perfume.list', compact('dados'));
+    }
+
+    public function show($id)
+    {
+    // Carrega o perfume junto com a ficha técnica
+    $item = Perfume::with('fichaTecnica')->findOrFail($id);
+
+    return view('perfume.show', compact('item'));
     }
 }

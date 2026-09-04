@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Perfume;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\FichaTecnica;
 
 /**
  * @extends Factory<Perfume>
@@ -22,6 +23,7 @@ class PerfumeFactory extends Factory
             'familia_olfativa' => fake()->randomElement($familias),
             'preco' => fake()->randomFloat(2, 90, 1500), // Gera valor entre 90.00 e 1500.00
             'volume' => fake()->randomElement($volumes),
+            'ficha_tecnica_id' => FichaTecnica::factory(),
         ];
     }
 }
