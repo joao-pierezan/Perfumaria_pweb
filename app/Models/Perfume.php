@@ -14,7 +14,8 @@ class Perfume extends Model
         'marca',
         'preco',
         'familia_olfativa',
-        'volume'
+        'volume',
+        'ficha_tecnica_id',
     ];
 
     public function fichaTecnica()

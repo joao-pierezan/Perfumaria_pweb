@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Perfume;
-use App\Models\FichaTecnica; // <-- Adicione esta linha no topo do controller
+use App\Models\FichaTecnica;
 
 class PerfumeController extends Controller
 {
     public function index()
     {
-       $dados = Perfume::with('fichaTecnica')->get(); // ou Perfume::with('fichaTecnica')->get();
-       return view('perfume.list', compact('dados'));
+        $dados = Perfume::with('fichaTecnica')->get();
+        return view('perfume.list', compact('dados'));
     }
 
     public function create()
@@ -20,27 +20,27 @@ class PerfumeController extends Controller
         return view('perfume.form', compact('fichas'));
     }
 
-    public function validateForm(Request $request)
+    public function validateForm(Request $request, $id = null)
     {
         $request->validate([
             'nome' => 'required',
             'marca' => 'required',
             'preco' => 'required',
             'familia_olfativa' => 'required',
-            'volume' => 'required'
+            'volume' => 'required',
+            'ficha_tecnica_id' => 'required',
         ], [
-            'nome.required' => "O :attribute é obrigatorio",
-            'marca.required' => "O :attribute é obrigatorio",
-            'preco.required' => "O :attribute é obrigatorio",
-            'familia_olfativa.required' => "O :attribute é obrigatorio",
-            'volume.required' => "O :attribute é obrigatorio",
-
+            'nome.required' => 'O :attribute é obrigatório.',
+            'marca.required' => 'A :attribute é obrigatória.',
+            'preco.required' => 'O :attribute é obrigatório.',
+            'familia_olfativa.required' => 'A :attribute é obrigatória.',
+            'volume.required' => 'O :attribute é obrigatório.',
+            'ficha_tecnica_id.required' => 'A ficha técnica é obrigatória.',
         ]);
     }
 
     public function store(Request $request)
     {
-        //dd($request->all());
         $this->validateForm($request);
 
         Perfume::create($request->all());
@@ -50,15 +50,14 @@ class PerfumeController extends Controller
 
     public function edit($id)
     {
-        $data = Perfume::findOrFail($id);
+        $data = Perfume::with('fichaTecnica')->findOrFail($id);
         $fichas = FichaTecnica::all();
         return view('perfume.form', compact('data', 'fichas'));
     }
 
     public function update(Request $request, $id)
     {
-        //dd($request->all());
-        $this->validateForm($request);
+        $this->validateForm($request, $id);
 
         Perfume::findOrFail($id)->update($request->all());
 
@@ -75,13 +74,13 @@ class PerfumeController extends Controller
     public function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Perfume::where(
+            $dados = Perfume::with('fichaTecnica')->where(
                 $request->tipo,
                 'like',
                 "%$request->valor%"
             )->get();
         } else {
-            $dados = Perfume::all();
+            $dados = Perfume::with('fichaTecnica')->get();
         }
 
         return view('perfume.list', compact('dados'));
@@ -89,9 +88,7 @@ class PerfumeController extends Controller
 
     public function show($id)
     {
-    // Carrega o perfume junto com a ficha técnica
-    $item = Perfume::with('fichaTecnica')->findOrFail($id);
-
-    return view('perfume.show', compact('item'));
+        $item = Perfume::with('fichaTecnica')->findOrFail($id);
+        return view('perfume.show', compact('item'));
     }
 }

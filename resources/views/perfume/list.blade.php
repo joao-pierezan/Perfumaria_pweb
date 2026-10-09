@@ -61,6 +61,7 @@
                     <div class="bg-light p-2 rounded mb-3 border" style="font-size: 0.85rem;">
                         <span class="d-block text-truncate"><strong>Topo:</strong> {{ $item->fichaTecnica?->notas_topo ?? 'N/A' }}</span>
                         <span class="d-block text-truncate"><strong>Coração:</strong> {{ $item->fichaTecnica?->notas_coracao ?? 'N/A' }}</span>
+                        <span class="d-block text-truncate"><strong>Base:</strong> {{ $item->fichaTecnica?->notas_base ?? 'N/A' }}</span>
                     </div>
 
                     <div class="mt-auto pt-2">

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\perfumeController;
+use App\Http\Controllers\PerfumeController;
 use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
@@ -30,10 +30,15 @@ Route::delete(
     [PerfumeController::class, 'destroy']
 )->name('perfume.destroy');
 
-Route::get(
+Route::post(
     '/perfume/search',
     [PerfumeController::class, 'search']
 )->name('perfume.search');
+
+Route::get(
+    '/perfume/{id}',
+    [PerfumeController::class, 'show']
+)->name('perfume.show');
 
 // Rotas para Avaliações
 Route::get(
@@ -94,8 +99,7 @@ Route::delete(
 )->name('usuario.destroy');
 
 Route::post(
-    '/perfume/search',
+    '/usuario/search',
     [UsuarioController::class, 'search']
 )->name('usuario.search');
-Route::get('/perfume/{id}', [PerfumeController::class, 'show'])->name('perfume.show');
 

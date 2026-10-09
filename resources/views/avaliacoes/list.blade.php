@@ -29,11 +29,16 @@
     <div class="row mt-5">
         <div class="col-12">
             @foreach ($dados as $item)
+                @php
+                    $nomePerfume = $item->perfumeRelacionado 
+                        ? trim(($item->perfumeRelacionado->marca ?? '') . ' ' . ($item->perfumeRelacionado->nome ?? '')) 
+                        : $item->perfume;
+                @endphp
                 <!-- Bloco individual da Resenha -->
                 <div class="card mb-4 border-secondary">
                     <div class="card-header d-flex justify-content-between align-items-center bg-light">
                         <div>
-                            <h5 class="m-0 d-inline"><strong>{{ $item->perfume }}</strong></h5>
+                            <h5 class="m-0 d-inline"><strong>{{ $nomePerfume }}</strong></h5>
                         </div>
                         <span class="fs-6"><strong>Nota:</strong> {{ $item->nota }}</span>
                     </div>

@@ -11,10 +11,9 @@ class AvaliacoesController extends Controller
 {
     public function index()
     {
+        $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->get();
 
-        $dados = Avaliacao::with('usuario')->get();
-
-        return view('avaliacoes.list')->with(['dados' => $dados]);
+        return view('avaliacoes.list', compact('dados'));
     }
 
     public function create()
@@ -52,14 +51,12 @@ class AvaliacoesController extends Controller
     }
 
     public function edit($id)
-        {
-            $data = Avaliacao::findOrFail($id);
-            $usuarios = Usuario::all();
-            $perfumes = Perfume::all(); // 2. Busque os perfumes ao editar também
-
-            // 3. Inclua 'perfumes' no compact
-            return view('avaliacoes.form', compact('data', 'usuarios', 'perfumes'));
-        }
+    {
+        $data = Avaliacao::findOrFail($id);
+        $usuarios = Usuario::all();
+        $perfumes = Perfume::all();
+        return view('avaliacoes.form', compact('data', 'usuarios', 'perfumes'));
+    }
 
     // ...
 
@@ -82,13 +79,13 @@ class AvaliacoesController extends Controller
     public function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Avaliacao::with('usuario')->where(
+            $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where(
                 $request->tipo,
                 'like',
                 "%$request->valor%"
             )->get();
         } else {
-            $dados = Avaliacao::with('usuario')->get();
+            $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->get();
         }
 
         return view('avaliacoes.list', compact('dados'));

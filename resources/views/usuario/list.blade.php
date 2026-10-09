@@ -12,7 +12,7 @@
                     <select name="tipo" class="form-select">
                         <option value="nome">Nome</option>
                         <option value="cpf">CPF</option>
-                        <option value="cpf">Email</option>
+                        <option value="email">Email</option>
                         <option value="telefone">Telefone</option>
                     </select>
                 </div>
@@ -58,8 +58,8 @@
                             <form action="{{ route('usuario.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class='btn btn-danger' title='Exclur'
-                                    onclick='return confirm(\"Deseja Excluir?\")'>Deletar</button>
+                                <button type="submit" class='btn btn-danger' title='Excluir'
+                                    onclick="return confirm('Deseja realmente excluir?')">Deletar</button>
                             </form>
                         </td>
                     </tr>

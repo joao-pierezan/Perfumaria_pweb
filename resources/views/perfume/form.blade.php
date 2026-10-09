@@ -18,27 +18,37 @@
             @endif
 
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" class="form-control" value="{{ old('nome', $data->nome ?? '') }}">
             </div>
-            <div class="col-6">
-                <label for="cpf">Marca</label>
-                <input type="marca" name="marca" class="form-control" value="{{ old('marca', $data->marca ?? '') }}">
+            <div class="col-6 mb-3">
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" class="form-control" value="{{ old('marca', $data->marca ?? '') }}">
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="preco">Preço</label>
-                <input type="text" name="preco" class="form-control"
-                    value="{{ old('telefone', $data->preco ?? '') }}">
+                <input type="text" name="preco" class="form-control" value="{{ old('preco', $data->preco ?? '') }}">
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="familia_olfativa">Familia Olfativa</label>
-                <input type="familia_olfativa" name="familia_olfativa" class="form-control" value="{{ old('familia_olfativa', $data->familia_olfativa ?? '') }}">
+                <input type="text" name="familia_olfativa" class="form-control" value="{{ old('familia_olfativa', $data->familia_olfativa ?? '') }}">
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="volume">Volume em ml</label>
-                <input type="text" name="volume" class="form-control"
-                    value="{{ old('volume', $data->volume ?? '') }}">
+                <input type="text" name="volume" class="form-control" value="{{ old('volume', $data->volume ?? '') }}">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="ficha_tecnica_id">Ficha Técnica</label>
+                <select name="ficha_tecnica_id" class="form-select">
+                    <option value="">Selecione uma Ficha Técnica...</option>
+                    @foreach ($fichas as $item)
+                        <option value="{{ $item->id }}"
+                            {{ old('ficha_tecnica_id', $data->ficha_tecnica_id ?? '') == $item->id ? 'selected' : '' }}>
+                            Topo: {{ $item->notas_topo }} | Coração: {{ $item->notas_coracao }} | Base: {{ $item->notas_base }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>

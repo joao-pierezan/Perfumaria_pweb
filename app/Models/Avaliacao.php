@@ -12,7 +12,12 @@ class Avaliacao extends Model
     protected $fillable = ['perfume', 'nota', 'texto', 'autor'];
 
     public function usuario()
-        {
-            return $this->belongsTo(Usuario::class, 'autor'); 
-        }
+    {
+        return $this->belongsTo(Usuario::class, 'autor'); 
+    }
+
+    public function perfumeRelacionado()
+    {
+        return $this->belongsTo(Perfume::class, 'perfume');
+    }
 }

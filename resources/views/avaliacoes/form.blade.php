@@ -1,5 +1,5 @@
 @extends('main')
-@section('titulo', 'Formulário de Perfumes')
+@section('titulo', 'Formulário de Avaliações')
 @section('conteudo')
     <div class="row">
         @php
@@ -10,7 +10,7 @@
             }
         @endphp
 
-        <h4>Formulário Perfume</h4>
+        <h4>Formulário Avaliação</h4>
         <form action="{{ $action }}" method="post">
             @csrf
             @if (!empty($data->id))
@@ -19,49 +19,53 @@
 
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
             
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="autor">Autor / Usuário</label>
-                <select name="autor" class="form-select">
+                <select name="autor" class="form-select" required>
                     <option value="">Selecione um usuário...</option>
-                    
-
-                    @foreach ($usuarios as $item)
-                        <option value="{{ $item->id }}" 
-                            {{ old('autor', $data->autor ?? '') == $item->id ? 'selected' : '' }}>
+                    @foreach ($usuarios ?? [] as $item)
+                        @php
+                            $userValue = $item->id;
+                            $isSelected = (
+                                old('autor', $data->usuario_id ?? $data->autor ?? '') == $userValue
+                            );
+                        @endphp
+                        <option value="{{ $userValue }}" {{ $isSelected ? 'selected' : '' }}>
                             {{ $item->nome ?? $item->name }}
                         </option>
                     @endforeach
-
                 </select>
             </div>
 
-                </select>
-            </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="perfume">Perfume</label>
-                <select name="perfume" class="form-select">
+                <select name="perfume" class="form-select" required>
                     <option value="">Selecione um perfume...</option>
-                    @foreach ($perfumes as $item)
+                    @foreach ($perfumes ?? [] as $item)
                         @php
-                            // Monta o nome completo: "Marca Nome"
                             $nomeCompleto = trim(($item->marca ?? '') . ' ' . ($item->nome ?? $item->name));
+                            // Se a sua tabela salva o ID do perfume, use $item->id. Se salva o texto, use $nomeCompleto.
+                            $perfumeValue = $item->id; 
+                            $isSelectedPerfume = (
+                                old('perfume', $data->perfume_id ?? $data->perfume ?? '') == $perfumeValue || 
+                                old('perfume', $data->perfume_id ?? $data->perfume ?? '') == $nomeCompleto
+                            );
                         @endphp
-                        <option value="{{ $nomeCompleto }}" 
-                            {{ old('perfume', $data->perfume ?? '') == $nomeCompleto ? 'selected' : '' }}>
+                        <option value="{{ $perfumeValue }}" {{ $isSelectedPerfume ? 'selected' : '' }}>
                             {{ $nomeCompleto }}
                         </option>
                     @endforeach
                 </select>
             </div>
-                <div class="col-6">
-                    <label for="nota">Nota de 0 a 10</label>
-                    <input type="number" step="0.01" min="0" max="10" name="nota" class="form-control" value="{{ old('nota', $data->nota ?? '') }}">
-                </div>
 
-                <div class="col-12">
-                    <label for="texto">Resenha</label>
-                    <textarea name="texto" class="form-control" rows="4">{{ old('texto', $data->texto ?? '') }}</textarea>
-                </div>
+            <div class="col-6 mb-3">
+                <label for="nota">Nota de 0 a 10</label>
+                <input type="number" step="0.01" min="0" max="10" name="nota" class="form-control" value="{{ old('nota', $data->nota ?? '') }}" required>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="texto">Resenha</label>
+                <textarea name="texto" class="form-control" rows="4" required>{{ old('texto', $data->texto ?? '') }}</textarea>
             </div>
 
             <div class="mt-3">
