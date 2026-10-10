@@ -1,4 +1,15 @@
 <?php return array (
+  'arielmejiadev/larapex-charts' => 
+  array (
+    'aliases' => 
+    array (
+      'LarapexChart' => 'ArielMejiaDev\\LarapexCharts\\Facades\\LarapexChart',
+    ),
+    'providers' => 
+    array (
+      0 => 'ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider',
+    ),
+  ),
   'laravel/pail' => 
   array (
     'providers' => 
