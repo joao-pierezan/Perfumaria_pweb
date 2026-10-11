@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Usuario extends Model
 {
-    use Hasfactory;
+    use HasFactory;
 
 
      protected $table = 'usuarios';

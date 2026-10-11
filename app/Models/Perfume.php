@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Perfume extends Model
 {
-    use Hasfactory;
+    use HasFactory;
     
     protected $fillable = [
         'nome',
@@ -21,5 +21,10 @@ class Perfume extends Model
     public function fichaTecnica()
     {
         return $this->belongsTo(FichaTecnica::class);
+    }
+
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class, 'perfume');
     }
 }

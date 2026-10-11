@@ -10,6 +10,7 @@
                     <label for="nome">Tipo</label>
                     <select name="tipo" class="form-select">
                         <option value="perfume">Perfume</option>
+                        <option value="autor">Autor</option>
                         <option value="nota">Nota</option>
                         <option value="texto">Resenha</option>
                     </select>

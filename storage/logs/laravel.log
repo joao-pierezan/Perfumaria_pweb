@@ -17025,3 +17025,265 @@ Did you mean one of these?
 #59 C:/Users/joaob/Downloads/projetos/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://Users//joaob//...')
 #60 {main}
 "} 
+[2026-10-10 23:36:01] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:227)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(143): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(130): Illuminate/Log/LogManager->get(NULL)
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(747): Illuminate/Log/LogManager->driver()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(475): Illuminate/Log/LogManager->error('Class \"ArielMej...', Array)
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(433): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(Error))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(Error))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(Error))
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:36:01] laravel.ERROR: Class "ArielMejiaDev\LarapexCharts\LarapexChart" not found {"exception":"[object] (Error(code: 0): Class \"ArielMejiaDev\\LarapexCharts\\LarapexChart\" not found at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/config/larapex-charts.php:31)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): require()
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->{closure:Illuminate/Foundation/Bootstrap/LoadConfiguration::loadConfigurationFile():115}()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'larapex-charts', 'C://Users//joaob//...', Array)
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:36:58] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:227)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(143): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(130): Illuminate/Log/LogManager->get(NULL)
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(747): Illuminate/Log/LogManager->driver()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(475): Illuminate/Log/LogManager->error('Class \"ArielMej...', Array)
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(433): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(Error))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(Error))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(Error))
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:36:58] laravel.ERROR: Class "ArielMejiaDev\LarapexCharts\LarapexChart" not found {"exception":"[object] (Error(code: 0): Class \"ArielMejiaDev\\LarapexCharts\\LarapexChart\" not found at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/config/larapex-charts.php:31)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): require()
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->{closure:Illuminate/Foundation/Bootstrap/LoadConfiguration::loadConfigurationFile():115}()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'larapex-charts', 'C://Users//joaob//...', Array)
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:42:39] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:227)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(143): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(130): Illuminate/Log/LogManager->get(NULL)
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(747): Illuminate/Log/LogManager->driver()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(475): Illuminate/Log/LogManager->error('Class \"ArielMej...', Array)
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(433): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(Error))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(Error))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(Error))
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:42:39] laravel.ERROR: Class "ArielMejiaDev\LarapexCharts\LarapexChart" not found {"exception":"[object] (Error(code: 0): Class \"ArielMejiaDev\\LarapexCharts\\LarapexChart\" not found at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/config/larapex-charts.php:31)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): require()
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->{closure:Illuminate/Foundation/Bootstrap/LoadConfiguration::loadConfigurationFile():115}()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'larapex-charts', 'C://Users//joaob//...', Array)
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:42:51] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:227)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(143): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(130): Illuminate/Log/LogManager->get(NULL)
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(747): Illuminate/Log/LogManager->driver()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(475): Illuminate/Log/LogManager->error('Class \"ArielMej...', Array)
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(433): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(Error))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(Error))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(Error))
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-10 23:42:51] laravel.ERROR: Class "ArielMejiaDev\LarapexCharts\LarapexChart" not found {"exception":"[object] (Error(code: 0): Class \"ArielMejiaDev\\LarapexCharts\\LarapexChart\" not found at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/config/larapex-charts.php:31)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): require()
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->{closure:Illuminate/Foundation/Bootstrap/LoadConfiguration::loadConfigurationFile():115}()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'larapex-charts', 'C://Users//joaob//...', Array)
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-11 19:34:07] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php:227)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(143): Illuminate/Log/LogManager->resolve(NULL, NULL)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(130): Illuminate/Log/LogManager->get(NULL)
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Log/LogManager.php(747): Illuminate/Log/LogManager->driver()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(475): Illuminate/Log/LogManager->error('Class \"ArielMej...', Array)
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(433): Illuminate/Foundation/Exceptions/Handler->reportThrowable(Object(Error))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(641): Illuminate/Foundation/Exceptions/Handler->report(Object(Error))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(200): Illuminate/Foundation/Console/Kernel->reportException(Object(Error))
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-11 19:34:07] laravel.ERROR: Class "ArielMejiaDev\LarapexCharts\LarapexChart" not found {"exception":"[object] (Error(code: 0): Class \"ArielMejiaDev\\LarapexCharts\\LarapexChart\" not found at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/config/larapex-charts.php:31)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): require()
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(115): Illuminate/Foundation/Bootstrap/LoadConfiguration->{closure:Illuminate/Foundation/Bootstrap/LoadConfiguration::loadConfigurationFile():115}()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(96): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFile(Object(Illuminate/Config/Repository), 'larapex-charts', 'C://Users//joaob//...', Array)
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(55): Illuminate/Foundation/Bootstrap/LoadConfiguration->loadConfigurationFiles(Object(Illuminate/Foundation/Application), Object(Illuminate/Config/Repository))
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/LoadConfiguration->bootstrap(Object(Illuminate/Foundation/Application))
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#9 {main}
+"} 
+[2026-10-11 19:38:34] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/storage/framework/lsp-b2e5d54d1ec65bce.php(5): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 {main}
+"} 
+[2026-10-11 19:38:35] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/storage/framework/lsp-8bdb22612eb8cb49.php(5): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 {main}
+"} 
+[2026-10-11 19:38:35] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
+[2026-10-11 19:38:46] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/storage/framework/lsp-f51fc44db562d7dc.php(5): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 {main}
+"} 
+[2026-10-11 19:38:46] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/storage/framework/lsp-c5599b159be9a22a.php(5): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 {main}
+"} 
+[2026-10-11 19:38:52] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
+[2026-10-11 19:40:24] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
+[2026-10-11 19:40:37] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
+[2026-10-11 19:42:02] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
+[2026-10-11 19:42:56] local.ERROR: The C:\Users\joaob\OneDrive\Documentos\GitHub\Perfumaria_pweb\bootstrap\cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The C:\\Users\\joaob\\OneDrive\\Documentos\\GitHub\\Perfumaria_pweb\\bootstrap\\cache directory must be present and writable. at C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#1 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#2 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#3 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#4 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#5 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#6 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#7 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#8 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/Users/joaob/OneDrive/Documentos/GitHub/Perfumaria_pweb/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#10 {main}
+"} 
