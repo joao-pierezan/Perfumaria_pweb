@@ -32,54 +32,38 @@
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     @foreach ($dados as $item)
+        @php
+            $nomeArquivoMarca = 'Imagens/' . $item->marca . '.webp';
+            $imagemPerfume = !empty($item->imagem)
+                ? asset('storage/' . $item->imagem)
+                : (file_exists(public_path($nomeArquivoMarca))
+                    ? asset($nomeArquivoMarca)
+                    : asset('img/aromatica.jpg'));
+        @endphp
         <div class="col">
             <div class="card h-100 border shadow-sm">
-                <!-- Container da Imagem com Altura Fixa -->
-                <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 180px;">
-                <img src="{{ asset('imagens/' . $item->marca . '.webp') }}"
-                    alt="{{ $item->marca }}" 
-                    class="img-fluid mh-100" 
-                    style="object-fit: contain;">
+                <!-- Imagem do Perfume -->
+                <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <img src="{{ $imagemPerfume }}"
+                        alt="{{ $item->nome }}" 
+                        class="img-fluid mh-100" 
+                        style="object-fit: contain;">
                 </div>
 
-                <!-- Detalhes do Produto -->
-                <div class="card-body d-flex flex-column">
-                    <small class="text-muted text-uppercase fw-bold">{{ $item->marca }}</small>
+                <!-- Detalhes: Marca, Nome e Preço -->
+                <div class="card-body d-flex flex-column text-center">
+                    <small class="text-muted text-uppercase fw-bold mb-1">{{ $item->marca }}</small>
+                    <h5 class="card-title fw-semibold mb-2">{{ $item->nome }}</h5>
                     
-                    <h5 class="card-title my-1">
-                        <a href="{{ route('perfume.show', $item->id) }}" class="text-decoration-none text-dark">
-                            {{ $item->nome }}
-                        </a>
-                    </h5>
-                    
-                    <div class="mb-2">
-                        <span class="badge bg-secondary">{{ $item->familia_olfativa }}</span>
-                        <small class="text-muted ms-1">{{ $item->volume }}</small>
-                    </div>
-
-                    <!-- Ficha Técnica com Operador Nullsafe (?->) -->
-                    <div class="bg-light p-2 rounded mb-3 border" style="font-size: 0.85rem;">
-                        <span class="d-block text-truncate"><strong>Topo:</strong> {{ $item->fichaTecnica?->notas_topo ?? 'N/A' }}</span>
-                        <span class="d-block text-truncate"><strong>Coração:</strong> {{ $item->fichaTecnica?->notas_coracao ?? 'N/A' }}</span>
-                        <span class="d-block text-truncate"><strong>Base:</strong> {{ $item->fichaTecnica?->notas_base ?? 'N/A' }}</span>
-                    </div>
-
                     <div class="mt-auto pt-2">
                         <span class="fs-6 text-muted">Preço:</span>
-                        <h4 class="text-success fw-bold mb-0">R$ {{ number_format((float)$item->preco, 2, ',', '.') }}</h4>
+                        <h4 class="text-success fw-bold mb-3">R$ {{ number_format((float)$item->preco, 2, ',', '.') }}</h4>
+                        
+                        <!-- Botão Comprar -->
+                        <a href="{{ route('perfume.show', $item->id) }}" class="btn btn-primary w-100 fw-bold">
+                            Comprar
+                        </a>
                     </div>
-                </div>
-
-                <!-- Ações de Gerenciamento -->
-                <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between gap-2 pb-3">
-                    <a class="btn btn-sm btn-outline-warning w-50" title="Editar" href="{{ route('perfume.edit', $item->id) }}">Editar</a>
-                    
-                    <form action="{{ route('perfume.destroy', $item->id) }}" method="post" class="w-50 m-0">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger w-100" title="Excluir"
-                            onclick="return confirm('Deseja realmente excluir este perfume?')">Deletar</button>
-                    </form>
                 </div>
             </div>
         </div>

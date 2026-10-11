@@ -88,7 +88,7 @@ class PerfumeController extends Controller
 
     public function show($id)
     {
-        $item = Perfume::with('fichaTecnica')->findOrFail($id);
+        $item = Perfume::with(['fichaTecnica', 'avaliacoes.usuario'])->findOrFail($id);
         return view('perfume.show', compact('item'));
     }
 }
