@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerfumeController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\NotasController;
 
 Route::get('/', function () {
     return view('main');
@@ -102,4 +103,13 @@ Route::post(
     '/usuario/search',
     [UsuarioController::class, 'search']
 )->name('usuario.search');
+
+// Rotas para Notas Olfativas
+Route::get('/notas', [NotasController::class, 'index'])->name('notas.index');
+Route::get('/notas/create', [NotasController::class, 'create'])->name('notas.create');
+Route::post('/notas/store', [NotasController::class, 'store'])->name('notas.store');
+Route::get('/notas/edit/{id}', [NotasController::class, 'edit'])->name('notas.edit');
+Route::put('/notas/update/{id}', [NotasController::class, 'update'])->name('notas.update');
+Route::delete('/notas/{id}', [NotasController::class, 'destroy'])->name('notas.destroy');
+Route::post('/notas/search', [NotasController::class, 'search'])->name('notas.search');
 

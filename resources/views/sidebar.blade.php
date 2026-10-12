@@ -14,6 +14,7 @@
                 <ul class="navbar-nav gap-lg-3">
                     <li class="nav-item"><a class="nav-link" href="{{ url('home') }}">INÍCIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('perfume') }}">PERFUMES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('notas') }}">NOTAS OLFATIVAS</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('avaliacoes') }}">AVALIAÇÕES</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('usuario') }}">USUÁRIOS</a></li>
                 </ul>

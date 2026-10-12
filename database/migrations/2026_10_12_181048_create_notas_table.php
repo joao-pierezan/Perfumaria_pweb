@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ficha_tecnicas', function (Blueprint $table) {
+        Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->string('notas_topo');
-            $table->string('notas_coracao');
-            $table->string('notas_base');
+            $table->string('imagem')->nullable();
+            $table->string('nome');
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ficha_tecnicas');
+        Schema::dropIfExists('notas');
     }
 };

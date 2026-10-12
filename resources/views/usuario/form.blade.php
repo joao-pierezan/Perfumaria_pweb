@@ -22,20 +22,19 @@
                 <label for="nome">Nome</label>
                 <input type="text" name="nome" class="form-control" value="{{ old('nome', $data->nome ?? '') }}">
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="cpf">CPF</label>
-                <input type="cpf" name="cpf" class="form-control" value="{{ old('cpf', $data->cpf ?? '') }}">
+                <input type="text" name="cpf" class="form-control" value="{{ old('cpf', $data->cpf ?? '') }}" required>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="email">Email</label>
                 <input type="email" name="email" class="form-control"
-                    value="{{ old('email', $data->email ?? '') }}">
+                    value="{{ old('email', $data->email ?? '') }}" required>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="telefone">Telefone</label>
-                <input type="telefone" name="telefone" class="form-control"
-                    value="{{ old('telefone', $data->telefone ?? '') }}">
-            </div>
+                <input type="text" name="telefone" class="form-control"
+                    value="{{ old('telefone', $data->telefone ?? '') }}" required>
             </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>

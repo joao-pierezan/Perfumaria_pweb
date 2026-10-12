@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Notas;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\FichaTecnica;
 
-class FichaTecnicaSeeder extends Seeder
+class NotasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        FichaTecnica::factory(10)->create();
+        Notas::factory(20)->create();
     }
 }
-

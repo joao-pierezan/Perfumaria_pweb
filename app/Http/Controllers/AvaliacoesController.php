@@ -79,11 +79,29 @@ class AvaliacoesController extends Controller
     public function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where(
-                $request->tipo,
-                'like',
-                "%$request->valor%"
-            )->get();
+            $valor = $request->valor;
+            if ($request->tipo === 'perfume') {
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->whereHas(
+                    'perfumeRelacionado',
+                    function ($q) use ($valor) {
+                        $q->where('nome', 'like', "%$valor%")
+                          ->orWhere('marca', 'like', "%$valor%");
+                    }
+                )->get();
+            } elseif ($request->tipo === 'autor') {
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->whereHas(
+                    'usuario',
+                    function ($q) use ($valor) {
+                        $q->where('nome', 'like', "%$valor%");
+                    }
+                )->get();
+            } else {
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where(
+                    $request->tipo,
+                    'like',
+                    "%$valor%"
+                )->get();
+            }
         } else {
             $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->get();
         }

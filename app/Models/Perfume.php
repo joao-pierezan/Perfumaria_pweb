@@ -15,16 +15,39 @@ class Perfume extends Model
         'preco',
         'familia_olfativa',
         'volume',
-        'ficha_tecnica_id',
+        'imagem',
     ];
-
-    public function fichaTecnica()
-    {
-        return $this->belongsTo(FichaTecnica::class);
-    }
 
     public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class, 'perfume');
+    }
+
+    public function notas()
+    {
+        return $this->belongsToMany(Notas::class, 'perfume_nota', 'perfume_id', 'nota_id')
+                    ->withPivot('tipo')
+                    ->withTimestamps();
+    }
+
+    public function notasTopo()
+    {
+        return $this->belongsToMany(Notas::class, 'perfume_nota', 'perfume_id', 'nota_id')
+                    ->wherePivot('tipo', 'topo')
+                    ->withPivot('tipo');
+    }
+
+    public function notasCoracao()
+    {
+        return $this->belongsToMany(Notas::class, 'perfume_nota', 'perfume_id', 'nota_id')
+                    ->wherePivot('tipo', 'coracao')
+                    ->withPivot('tipo');
+    }
+
+    public function notasFundo()
+    {
+        return $this->belongsToMany(Notas::class, 'perfume_nota', 'perfume_id', 'nota_id')
+                    ->wherePivot('tipo', 'fundo')
+                    ->withPivot('tipo');
     }
 }

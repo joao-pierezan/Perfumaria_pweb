@@ -18,7 +18,7 @@ return new class extends Migration
         $table->decimal('preco', 8, 2);
         $table->string('familia_olfativa');
         $table->string('volume');
-        $table->foreignId('ficha_tecnica_id')->unique()->constrained('ficha_tecnicas')->onDelete('cascade');
+        $table->string('imagem')->nullable();
         $table->timestamps();
     });
 }
