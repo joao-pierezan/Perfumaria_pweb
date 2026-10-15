@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerfumeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\NotasController;
+use App\Http\Controllers\VendasController;
 
 Route::get('/', function () {
     return view('main');
@@ -113,3 +114,5 @@ Route::put('/notas/update/{id}', [NotasController::class, 'update'])->name('nota
 Route::delete('/notas/{id}', [NotasController::class, 'destroy'])->name('notas.destroy');
 Route::post('/notas/search', [NotasController::class, 'search'])->name('notas.search');
 
+Route::get('vendas/search', [VendasController::class, 'search'])->name('vendas.search');
+Route::resource('vendas', VendasController::class);

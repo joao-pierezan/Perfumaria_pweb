@@ -3,12 +3,24 @@
 @section('conteudo')
 
 @php
-    $nomeArquivoMarca = 'Imagens/' . $item->marca . '.webp';
-    $imagemPerfume = !empty($item->imagem)
-        ? asset('storage/' . $item->imagem)
-        : (file_exists(public_path($nomeArquivoMarca))
-            ? asset($nomeArquivoMarca)
-            : asset('img/aromatica.jpg'));
+    $imagemPerfume = asset('images/sem-foto.avif'); // Imagem padrão (fallback)
+
+    if (!empty($item->imagem)) {
+        // 1. Caminhos para verificar se está no Storage
+        $caminhoStorageDisk = storage_path('app/public/' . $item->imagem);
+        $caminhoStoragePublic = public_path('storage/' . $item->imagem);
+
+        // 2. Caminho para verificar se está na pasta public/Imagens
+        $caminhoPublicImagens = public_path('Imagens/' . $item->imagem);
+
+        if (file_exists($caminhoStorageDisk) || file_exists($caminhoStoragePublic)) {
+            // Se estiver no storage, usa a rota do storage
+            $imagemPerfume = asset('storage/' . $item->imagem);
+        } elseif (file_exists($caminhoPublicImagens)) {
+            // Se estiver na pasta Imagens, usa a rota direta
+            $imagemPerfume = asset('Imagens/' . $item->imagem);
+        }
+    }
 @endphp
 
 <div class="container py-3">
@@ -67,20 +79,17 @@
         </div>
     </div>
 
-    <!-- Seção: Notas Olfativas (Pirâmide Olfativa - Estilo Fragrantica Oficial) -->
     <div class="card shadow-sm border mb-5">
         <div class="card-header bg-light py-3 text-center">
             <h4 class="mb-0 fw-bold">Pirâmide Olfativa</h4>
-            <small class="text-muted">Notas olfativas e evolução da fragrância</small>
         </div>
         <div class="card-body p-4 bg-white">
             
-            <!-- TOP NOTES -->
             <div class="mb-4">
                 <div class="d-flex align-items-center justify-content-center my-3">
                     <div class="border-top flex-grow-1"></div>
                     <span class="px-3 text-secondary text-uppercase fw-bold" style="letter-spacing: 2px; font-size: 0.85rem;">
-                        TOP NOTES
+                        NOTAS DE TOPO
                     </span>
                     <div class="border-top flex-grow-1"></div>
                 </div>
@@ -112,13 +121,11 @@
                     @endforelse
                 </div>
             </div>
-
-            <!-- MIDDLE NOTES -->
             <div class="mb-4">
                 <div class="d-flex align-items-center justify-content-center my-3">
                     <div class="border-top flex-grow-1"></div>
                     <span class="px-3 text-secondary text-uppercase fw-bold" style="letter-spacing: 2px; font-size: 0.85rem;">
-                        MIDDLE NOTES
+                        NOTAS DE CORAÇÃO
                     </span>
                     <div class="border-top flex-grow-1"></div>
                 </div>
@@ -151,12 +158,11 @@
                 </div>
             </div>
 
-            <!-- BASE NOTES -->
             <div>
                 <div class="d-flex align-items-center justify-content-center my-3">
                     <div class="border-top flex-grow-1"></div>
                     <span class="px-3 text-secondary text-uppercase fw-bold" style="letter-spacing: 2px; font-size: 0.85rem;">
-                        BASE NOTES
+                        NOTAS DE BASE
                     </span>
                     <div class="border-top flex-grow-1"></div>
                 </div>
@@ -196,11 +202,10 @@
     <div class="card shadow-sm border mb-4">
         <div class="card-header bg-light py-3 d-flex justify-content-between align-items-center">
             <div>
-                <h4 class="mb-0 fw-bold">Avaliações dos Usuários</h4>
-                <small class="text-muted">Total de avaliações: {{ $item->avaliacoes->count() }}</small>
+                <h4 class="mb-0 fw-bold">Avaliações do Perfume {{ $item->nome }}</h4>
             </div>
             <a href="{{ route('avaliacoes.create') }}" class="btn btn-success btn-sm">
-                + Nova Avaliação
+                Adicionar Avaliação
             </a>
         </div>
         <div class="card-body p-4">
@@ -208,7 +213,7 @@
                 <div class="card mb-3 border bg-white">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>{{ $avaliacao->usuario?->nome ?? 'Usuário Anônimo' }}</strong>
+                            <strong>{{ $avaliacao->usuario?->nome}}</strong>
                         </div>
                         <span class="badge bg-warning text-dark fs-6">
                             Nota: {{ $avaliacao->nota }} / 10

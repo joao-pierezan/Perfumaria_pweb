@@ -128,7 +128,7 @@ class PerfumeController extends Controller
             }
         }
 
-        return redirect('perfume')->with("success", 'Registro Atualizado com sucesso!');
+        return redirect('perfume/'.$perfume->id)->with("success", 'Registro Atualizado com sucesso!');
     }
 
     public function destroy($id)

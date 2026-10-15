@@ -71,9 +71,11 @@ class AvaliacoesController extends Controller
 
     public function destroy($id)
     {
-        Avaliacao::destroy($id);
+        $avaliacao = Avaliacao::findOrFail($id);
+        $perfumeId = $avaliacao->perfume;
+        $avaliacao->delete();
 
-        return redirect('avaliacoes')->with("success", 'Registro removido com sucesso!');
+        return redirect('perfume/' . $perfumeId)->with("success", 'Registro removido com sucesso!');
     }
 
     public function search(Request $request)

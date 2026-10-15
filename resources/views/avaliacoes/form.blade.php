@@ -70,7 +70,7 @@
 
             <div class="mt-3">
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="{{ url('avaliacoes') }}" class="btn btn-primary"> Voltar</a>
+                <a href="{{ url('perfume/'.$data->perfume) }}" class="btn btn-primary"> Voltar</a>
             </div>
         </form>
     </div>

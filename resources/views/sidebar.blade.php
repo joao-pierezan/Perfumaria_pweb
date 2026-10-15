@@ -17,6 +17,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url('notas') }}">NOTAS OLFATIVAS</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('avaliacoes') }}">AVALIAÇÕES</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('usuario') }}">USUÁRIOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('vendas') }}">VENDAS</a></li>
                 </ul>
             </div>
         </div>

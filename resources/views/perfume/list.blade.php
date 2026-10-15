@@ -32,14 +32,26 @@
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     @foreach ($dados as $item)
-        @php
-            $nomeArquivoMarca = 'Imagens/' . $item->marca . '.webp';
-            $imagemPerfume = !empty($item->imagem)
-                ? asset('storage/' . $item->imagem)
-                : (file_exists(public_path($nomeArquivoMarca))
-                    ? asset($nomeArquivoMarca)
-                    : asset('img/aromatica.jpg'));
-        @endphp
+       @php
+    $imagemPerfume = asset('images/sem-foto.avif'); // Imagem padrão (fallback)
+
+    if (!empty($item->imagem)) {
+        // 1. Caminhos para verificar se está no Storage
+        $caminhoStorageDisk = storage_path('app/public/' . $item->imagem);
+        $caminhoStoragePublic = public_path('storage/' . $item->imagem);
+
+        // 2. Caminho para verificar se está na pasta public/Imagens
+        $caminhoPublicImagens = public_path('Imagens/' . $item->imagem);
+
+        if (file_exists($caminhoStorageDisk) || file_exists($caminhoStoragePublic)) {
+            // Se estiver no storage, usa a rota do storage
+            $imagemPerfume = asset('storage/' . $item->imagem);
+        } elseif (file_exists($caminhoPublicImagens)) {
+            // Se estiver na pasta Imagens, usa a rota direta
+            $imagemPerfume = asset('Imagens/' . $item->imagem);
+        }
+    }
+@endphp
         <div class="col">
             <div class="card h-100 border shadow-sm">
                 <!-- Imagem do Perfume -->
