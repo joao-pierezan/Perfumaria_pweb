@@ -19,14 +19,13 @@ class VendaFactory extends Factory
      */
     public function definition(): array
     {
+        $perfume = Perfume::all()->isNotEmpty() ? Perfume::all()->random() : Perfume::factory()->create();
+        $usuario = Usuario::all()->isNotEmpty() ? Usuario::all()->random() : Usuario::factory()->create();
+
         return [
-            'usuario_id'=>Usuario::factory(),
-            'perfume_id'=>Perfume::factory(),
-            'valor_total' => function (array $a) {
-                $perfume = Perfume::find($a['perfume_id']);
-                
-                return $perfume->preco;
-            },
+            'usuario_id' => $usuario->id,
+            'perfume_id' => $perfume->id,
+            'valor_total' => $perfume->preco,
         ];
     }
 }

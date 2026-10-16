@@ -14,11 +14,14 @@ class AvaliacaoFactory extends Factory
 {
     public function definition(): array
     {
+        $perfume = Perfume::all()->isNotEmpty() ? Perfume::all()->random() : Perfume::factory()->create();
+        $usuario = Usuario::all()->isNotEmpty() ? Usuario::all()->random() : Usuario::factory()->create();
+
         return [
-            'perfume' =>  Perfume::inRandomOrder()->first()?->id ?? Perfume::factory(),
+            'perfume' => $perfume->id,
             'nota' => fake()->randomFloat(2, 0, 10),
             'texto' => fake()->text(200),
-            'autor' => Usuario::inRandomOrder()->first()?->id ?? Usuario::factory(),
+            'autor' => $usuario->id,
         ];
     }
 }

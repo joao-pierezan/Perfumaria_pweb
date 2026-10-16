@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Perfume;
 use App\Models\Notas;
+use App\Models\Avaliacao;
 use Illuminate\Support\Facades\Storage;
 
 class PerfumeController extends Controller
@@ -109,7 +110,6 @@ class PerfumeController extends Controller
 
         $perfume->update($data);
 
-        // Atualiza as notas da pirâmide olfativa
         $perfume->notas()->detach();
 
         if (!empty($request->notas_topo)) {
@@ -160,15 +160,34 @@ class PerfumeController extends Controller
         return view('perfume.list', compact('dados'));
     }
 
-    public function show($id)
-    {
-        $item = Perfume::with([
-            'avaliacoes.usuario',
-            'notasTopo',
-            'notasCoracao',
-            'notasFundo'
-        ])->findOrFail($id);
+    public function show(Request $request, $id)
+{
+    $item = Perfume::with([
+        'notasTopo',
+        'notasCoracao',
+        'notasFundo'
+    ])->findOrFail($id);
 
-        return view('perfume.show', compact('item'));
+    // Constrói a query de avaliações restrita a este perfume específico
+    $query = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where('perfume', $id);
+
+    // Aplica a mesma lógica de pesquisa da função search
+    if (!empty($request->valor)) {
+        $valor = $request->valor;
+        if ($request->tipo === 'autor') {
+            $query->whereHas('usuario', function ($q) use ($valor) {
+                $q->where('nome', 'like', "%$valor%");
+            });
+        } elseif (!empty($request->tipo)) {
+            $query->where($request->tipo, 'like', "%$valor%");
+        }
     }
+
+    $avaliacoes = $query->get();
+
+    // Substitui/atribui as avaliações filtradas à relação do perfume
+    $item->setRelation('avaliacoes', $avaliacoes);
+
+    return view('perfume.show', compact('item'));
+}
 }

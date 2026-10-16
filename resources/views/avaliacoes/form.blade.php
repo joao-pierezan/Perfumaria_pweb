@@ -19,6 +19,7 @@
 
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
             
+            <!-- CORRIGIDO: name="autor" para coincidir com o Model e Validação -->
             <div class="col-6 mb-3">
                 <label for="autor">Autor / Usuário</label>
                 <select name="autor" class="form-select" required>
@@ -27,7 +28,7 @@
                         @php
                             $userValue = $item->id;
                             $isSelected = (
-                                old('autor', $data->usuario_id ?? $data->autor ?? '') == $userValue
+                                old('autor', $data->autor ?? '') == $userValue
                             );
                         @endphp
                         <option value="{{ $userValue }}" {{ $isSelected ? 'selected' : '' }}>
@@ -37,24 +38,25 @@
                 </select>
             </div>
 
+            <!-- CORRIGIDO: name="perfume" para coincidir com o Model e Validação -->
             <div class="col-6 mb-3">
                 <label for="perfume">Perfume</label>
                 <select name="perfume" class="form-select" required>
                     <option value="">Selecione um perfume...</option>
-                    @foreach ($perfumes ?? [] as $item)
-                        @php
-                            $nomeCompleto = trim(($item->marca ?? '') . ' ' . ($item->nome ?? $item->name));
-                            // Se a sua tabela salva o ID do perfume, use $item->id. Se salva o texto, use $nomeCompleto.
-                            $perfumeValue = $item->id; 
-                            $isSelectedPerfume = (
-                                old('perfume', $data->perfume_id ?? $data->perfume ?? '') == $perfumeValue || 
-                                old('perfume', $data->perfume_id ?? $data->perfume ?? '') == $nomeCompleto
-                            );
-                        @endphp
-                        <option value="{{ $perfumeValue }}" {{ $isSelectedPerfume ? 'selected' : '' }}>
-                            {{ $nomeCompleto }}
-                        </option>
-                    @endforeach
+                        @foreach ($perfumes as $item)
+                            @php
+                                $nomeCompleto = trim(($item->marca ?? '') . ' ' . ($item->nome ?? $item->name));
+                                $perfumeValue = $item->id; 
+                                
+                                // Verifica se deve vir selecionado (seja por edição, old input, ou parâmetro na URL)
+                                $isSelectedPerfume = (
+                                    old('perfume', $data->perfume ?? request('perfume_id')) == $perfumeValue
+                                );
+                            @endphp
+                            <option value="{{ $perfumeValue }}" {{ $isSelectedPerfume ? 'selected' : '' }}>
+                                {{ $nomeCompleto }}
+                            </option>
+                        @endforeach
                 </select>
             </div>
 
@@ -70,7 +72,11 @@
 
             <div class="mt-3">
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="{{ url('perfume/'.$data->perfume) }}" class="btn btn-primary"> Voltar</a>
+                
+                @php
+                    $urlVoltar = !empty($data->perfume) ? url('perfume/' . $data->perfume) : url('avaliacoes');
+                @endphp
+                <a href="{{ $urlVoltar }}" class="btn btn-primary">Voltar</a>
             </div>
         </form>
     </div>

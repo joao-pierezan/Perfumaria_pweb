@@ -15,7 +15,7 @@ class NotasFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected static int $index = 0;
+    public static int $index = 0;
 
     protected static array $notasLista = [
         ['nome' => 'Jasmin', 'imagem' => 'imagensNotas/jasmin.jpg', 'descricao' => 'Flor branca doce, opulenta e inebriante.'],

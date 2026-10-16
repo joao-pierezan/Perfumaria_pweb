@@ -13,6 +13,7 @@ class NotasSeeder extends Seeder
      */
     public function run(): void
     {
+        \Database\Factories\NotasFactory::$index = 0;
         Notas::factory(20)->create();
     }
 }

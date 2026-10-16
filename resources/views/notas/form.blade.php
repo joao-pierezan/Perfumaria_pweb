@@ -21,12 +21,12 @@
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
             
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-12 mb-3">
                     <label for="nome" class="form-label fw-bold">Nome da Nota</label>
                     <input type="text" name="nome" class="form-control" value="{{ old('nome', $data->nome ?? '') }}" placeholder="Ex: Lavanda, Baunilha, Bergamota..." required>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-12 mb-3">
                     <label for="imagem" class="form-label fw-bold">Imagem da Nota</label>
                     @php
                         $srcImagem = asset('img/aromatica.jpg');
@@ -40,11 +40,10 @@
                             }
                         }
                     @endphp
-                    <div class="d-flex align-items-center gap-3">
+                                        <div class="d-flex align-items-center gap-3">
                         <img src="{{ $srcImagem }}" class="rounded shadow-sm border" width="90" height="90" style="object-fit: cover;" alt="Prévia da Imagem" />
                         <div class="flex-grow-1">
                             <input type="file" name="imagem" class="form-control" accept="image/*">
-                            <small class="text-muted">Extensões permitidas: JPG, PNG, WEBP</small>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('main')
-@section('titulo', $item->nome . ' - Detalhes do Perfume')
+@section('titulo', 'Comprar o perfume '.($item->nome))
 @section('conteudo')
 
 @php
@@ -62,9 +62,9 @@
 
             <!-- Ações -->
             <div class="pt-3 border-top d-flex flex-wrap gap-2 align-items-center">
-                <button type="button" class="btn btn-primary btn-lg px-4 fw-bold">
+                <a href="{{ url('vendas/create?perfume_id=' . $item->id) }}" type="button" class="btn btn-primary btn-lg px-4 fw-bold">
                     Comprar Agora
-                </button>
+                </a>
                 <a href="{{ route('perfume.edit', $item->id) }}" class="btn btn-outline-warning">
                     Editar Perfume
                 </a>
@@ -196,17 +196,37 @@
             </div>
 
         </div>
-    </div>
-
-    <!-- Seção: Avaliações do Perfume (Relacionamento 1:N) -->
-    <div class="card shadow-sm border mb-4">
-        <div class="card-header bg-light py-3 d-flex justify-content-between align-items-center">
-            <div>
-                <h4 class="mb-0 fw-bold">Avaliações do Perfume {{ $item->nome }}</h4>
             </div>
-            <a href="{{ route('avaliacoes.create') }}" class="btn btn-success btn-sm">
-                Adicionar Avaliação
-            </a>
+            <div class="card shadow-sm border mb-4">
+                <div class="card-header bg-light py-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0 fw-bold">Avaliações do Perfume {{ $item->nome }}</h4>
+                <a href="{{ url('avaliacoes/create?perfume_id=' . $item->id) }}" class="btn btn-outline-success btn-sm">
+                    Criar Avaliação
+                </a>
+            </div>
+            <form action="{{ url('perfume/' . $item->id) }}" method="GET" class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label for="tipo" class="form-label small fw-bold text-muted">Tipo</label>
+                <select name="tipo" class="form-select">
+                    <option value="autor" {{ request('tipo') === 'autor' ? 'selected' : '' }}>Autor</option>
+                    <option value="nota" {{ request('tipo') === 'nota' ? 'selected' : '' }}>Nota</option>
+                    <option value="texto" {{ request('tipo') === 'texto' ? 'selected' : '' }}>Resenha</option>
+                </select>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="valor" class="form-label small fw-bold text-muted">Valor</label>
+                <input type="text" name="valor" value="{{ request('valor') }}" placeholder="Pesquisar..." class="form-control">
+            </div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                @if(request('valor'))
+                    <a href="{{ url('perfume/' . $item->id) }}" class="btn btn-outline-secondary" title="Limpar pesquisa">Limpar</a>
+                @endif
+            </div>
+        </form>
         </div>
         <div class="card-body p-4">
             @forelse ($item->avaliacoes as $avaliacao)

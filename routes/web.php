@@ -7,9 +7,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\NotasController;
 use App\Http\Controllers\VendasController;
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 // Rotas para Perfume
 Route::get('/perfume', [PerfumeController::class, 'index']);

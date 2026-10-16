@@ -34,9 +34,9 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="valor_total" class="form-label">Valor Total</label>
-            <input type="number" step="0.01" name="valor_total" id="valor_total" class="form-control" value="{{ $a->valor_total ?? old('valor_total') }}" required>
+        <div class="col-6 mb-3">
+            <label for="valor_total">Valor Total</label>
+            <input type="number" name="valor_total" class="form-control" value="{{ old('valor_total', $a->valor_total ) }}">
         </div>
 
         <button type="submit" class="btn btn-success">{{ isset($a->id) ? 'Atualizar' : 'Salvar' }}</button>

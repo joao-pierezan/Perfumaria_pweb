@@ -14,11 +14,20 @@ class VendasController extends Controller
         return view('vendas.list', compact('a'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $a = null;           // Sem venda ativa (criação)
+        $a = new Venda();         // Nova venda vazia
         $b = Perfume::all(); // Lista de perfumes
         $c = Usuario::all(); // Lista de usuários
+
+        // Correção: usa $request->has() e atribui a perfume_id
+        if ($request->has('perfume_id')) {
+            $a->perfume_id = $request->perfume_id; 
+        }
+        $perfume = Perfume::find($request->perfume_id);
+        if ($perfume) {
+            $a->valor_total = $perfume->preco;
+        }
         
         return view('vendas.form', compact('a', 'b', 'c'));
     }
@@ -36,11 +45,6 @@ class VendasController extends Controller
         return redirect()->route('vendas.index')->with('success', 'Registo criado com sucesso!');
     }
 
-    public function show($id)
-    {
-        $a = Venda::findOrFail($id);
-        return view('vendas.show', compact('a'));
-    }
 
     public function edit($id)
     {

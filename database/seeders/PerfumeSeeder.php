@@ -13,6 +13,7 @@ class PerfumeSeeder extends Seeder
      */
     public function run(): void
     {
+        \Database\Factories\PerfumeFactory::$index = 0;
         $todasNotas = Notas::all();
 
         Perfume::factory(15)->create()->each(function ($perfume) use ($todasNotas) {
