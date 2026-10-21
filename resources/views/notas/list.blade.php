@@ -11,7 +11,6 @@
         </div>
     </div>
 
-    <!-- Formulário de Busca -->
     <form action="{{ route('notas.search') }}" method="post" class="mb-4">
         @csrf
         <div class="row g-2">
@@ -30,32 +29,17 @@
         </div>
     </form>
 
-    <!-- Grid de Cards de Notas Olfativas -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         @foreach ($dados as $item)
-            @php
-                $srcImagem = asset('img/aromatica.jpg');
-                if (!empty($item->imagem)) {
-                    if (file_exists(public_path($item->imagem))) {
-                        $srcImagem = asset($item->imagem);
-                    } elseif (file_exists(public_path('notas/' . $item->imagem))) {
-                        $srcImagem = asset('imagensNotas/' . $item->imagem);
-                    } elseif (file_exists(public_path('storage/' . $item->imagem))) {
-                        $srcImagem = asset('storage/' . $item->imagem);
-                    }
-                }
-            @endphp
             <div class="col">
                 <div class="card h-100 border shadow-sm">
-                    <!-- Imagem da Nota -->
                     <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 180px;">
-                        <img src="{{ $srcImagem }}"
+                        <img src="{{ !empty($item->imagem) ? asset('storage/' . $item->imagem) : asset('img/aromatica.jpg') }}"
                             alt="{{ $item->nome }}" 
                             class="img-fluid mh-100 rounded" 
                             style="object-fit: contain;">
                     </div>
 
-                    <!-- Detalhes da Nota -->
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title fw-bold mb-2 text-dark">{{ $item->nome }}</h5>
                         <p class="card-text text-muted small flex-grow-1" style="white-space: pre-line;">
@@ -63,7 +47,6 @@
                         </p>
                     </div>
 
-                    <!-- Ações de Gerenciamento do CRUD -->
                     <div class="card-footer bg-transparent border-top d-flex justify-content-between gap-2 py-2">
                         <a class="btn btn-sm btn-outline-warning w-50" title="Editar" href="{{ route('notas.edit', $item->id) }}">
                             Editar
@@ -83,7 +66,6 @@
         @endforeach
     </div>
 
-    <!-- Mensagem de lista vazia -->
     @if($dados->isEmpty())
         <div class="alert alert-info mt-4">
             Nenhuma nota olfativa cadastrada no momento.

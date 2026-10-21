@@ -33,7 +33,7 @@ class PerfumeFactory extends Factory
             'familia_olfativa' => fake()->randomElement($familias),
             'preco' => fake()->randomFloat(2, 90, 1500),
             'volume' => fake()->randomElement($volumes),
-            'imagem' => $nome . '.avif',
+            'imagem' => 'perfume/' . $nome . '.avif',
         ];
     }
 }

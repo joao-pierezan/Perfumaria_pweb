@@ -42,9 +42,9 @@ class NotasController extends Controller
 
         if ($imagem) {
             $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
-            $diretorio = "imagem/notas/";
+            $diretorio = "notas"; 
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
-            $data['imagem'] = $diretorio . $nome_imagem;
+            $data['imagem'] = $diretorio . '/' . $nome_imagem;
         }
 
         Notas::create($data);
@@ -68,15 +68,14 @@ class NotasController extends Controller
         $imagem = $request->file('imagem');
 
         if ($imagem) {
-            // Se já existia uma imagem no storage, remove a antiga
             if ($nota->imagem && Storage::disk('public')->exists($nota->imagem)) {
                 Storage::disk('public')->delete($nota->imagem);
             }
 
             $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
-            $diretorio = "imagem/notas/";
+            $diretorio = "notas";
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
-            $data['imagem'] = $diretorio . $nome_imagem;
+            $data['imagem'] = $diretorio . '/' . $nome_imagem;
         }
 
         $nota->update($data);
@@ -88,7 +87,6 @@ class NotasController extends Controller
     {
         $nota = Notas::findOrFail($id);
 
-        // Exclui a imagem do storage caso exista
         if ($nota->imagem && Storage::disk('public')->exists($nota->imagem)) {
             Storage::disk('public')->delete($nota->imagem);
         }

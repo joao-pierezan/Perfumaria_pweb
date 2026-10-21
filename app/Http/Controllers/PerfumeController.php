@@ -13,13 +13,15 @@ class PerfumeController extends Controller
     public function index()
     {
         $dados = Perfume::all();
-        return view('perfume.list', compact('dados'));
+
+        return view('perfume.list')->with(['dados' => $dados]);
     }
 
     public function create()
     {
         $notas = Notas::orderBy('nome')->get();
-        return view('perfume.form', compact('notas'));
+
+        return view('perfume.form')->with(compact('notas'));
     }
 
     public function validateForm(Request $request, $id = null)
@@ -58,7 +60,7 @@ class PerfumeController extends Controller
 
         $perfume = Perfume::create($data);
 
-        // Vincula as notas selecionadas nas três camadas (N:N)
+        // Vincula as notas nas três camadas (N:N)
         if (!empty($request->notas_topo)) {
             foreach ($request->notas_topo as $notaId) {
                 $perfume->notas()->attach($notaId, ['tipo' => 'topo']);
@@ -80,28 +82,30 @@ class PerfumeController extends Controller
 
     public function edit($id)
     {
-        $data = Perfume::findOrFail($id);
+        $data = Perfume::find($id);
         $notas = Notas::orderBy('nome')->get();
 
         $notasTopoIds = $data->notasTopo()->pluck('notas.id')->toArray();
         $notasCoracaoIds = $data->notasCoracao()->pluck('notas.id')->toArray();
         $notasFundoIds = $data->notasFundo()->pluck('notas.id')->toArray();
 
-        return view('perfume.form', compact('data', 'notas', 'notasTopoIds', 'notasCoracaoIds', 'notasFundoIds'));
+        return view('perfume.form')->with(compact('data', 'notas', 'notasTopoIds', 'notasCoracaoIds', 'notasFundoIds'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validateForm($request, $id);
 
-        $perfume = Perfume::findOrFail($id);
+        $perfume = Perfume::find($id);
         $data = $request->all();
         $imagem = $request->file('imagem');
 
         if ($imagem) {
+            // Opcional: apaga a imagem antiga para não acumular lixo no storage
             if ($perfume->imagem && Storage::disk('public')->exists($perfume->imagem)) {
                 Storage::disk('public')->delete($perfume->imagem);
             }
+
             $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
             $diretorio = "imagem/perfume/";
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
@@ -110,6 +114,7 @@ class PerfumeController extends Controller
 
         $perfume->update($data);
 
+        // Atualiza as relações N:N das notas
         $perfume->notas()->detach();
 
         if (!empty($request->notas_topo)) {
@@ -128,18 +133,18 @@ class PerfumeController extends Controller
             }
         }
 
-        return redirect('perfume/'.$perfume->id)->with("success", 'Registro Atualizado com sucesso!');
+        return redirect('perfume')->with("success", 'Registro Atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
-        $perfume = Perfume::findOrFail($id);
+        $perfume = Perfume::find($id);
 
-        if ($perfume->imagem && Storage::disk('public')->exists($perfume->imagem)) {
+        if ($perfume && $perfume->imagem && Storage::disk('public')->exists($perfume->imagem)) {
             Storage::disk('public')->delete($perfume->imagem);
         }
 
-        $perfume->delete();
+        Perfume::destroy($id);
 
         return redirect('perfume')->with("success", 'Registro removido com sucesso!');
     }
@@ -161,33 +166,29 @@ class PerfumeController extends Controller
     }
 
     public function show(Request $request, $id)
-{
-    $item = Perfume::with([
-        'notasTopo',
-        'notasCoracao',
-        'notasFundo'
-    ])->findOrFail($id);
+    {
+        $item = Perfume::with([
+            'notasTopo',
+            'notasCoracao',
+            'notasFundo'
+        ])->findOrFail($id);
 
-    // Constrói a query de avaliações restrita a este perfume específico
-    $query = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where('perfume', $id);
+        $query = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where('perfume', $id);
 
-    // Aplica a mesma lógica de pesquisa da função search
-    if (!empty($request->valor)) {
-        $valor = $request->valor;
-        if ($request->tipo === 'autor') {
-            $query->whereHas('usuario', function ($q) use ($valor) {
-                $q->where('nome', 'like', "%$valor%");
-            });
-        } elseif (!empty($request->tipo)) {
-            $query->where($request->tipo, 'like', "%$valor%");
+        if (!empty($request->valor)) {
+            $valor = $request->valor;
+            if ($request->tipo === 'autor') {
+                $query->whereHas('usuario', function ($q) use ($valor) {
+                    $q->where('nome', 'like', "%$valor%");
+                });
+            } elseif (!empty($request->tipo)) {
+                $query->where($request->tipo, 'like', "%$valor%");
+            }
         }
+
+        $avaliacoes = $query->get();
+        $item->setRelation('avaliacoes', $avaliacoes);
+
+        return view('perfume.show', compact('item'));
     }
-
-    $avaliacoes = $query->get();
-
-    // Substitui/atribui as avaliações filtradas à relação do perfume
-    $item->setRelation('avaliacoes', $avaliacoes);
-
-    return view('perfume.show', compact('item'));
-}
 }

@@ -29,7 +29,6 @@
                 <div class="col-12 mb-3">
                     <label for="imagem" class="form-label fw-bold">Imagem da Nota</label>
                     @php
-                        $srcImagem = asset('img/aromatica.jpg');
                         if (!empty($data->imagem)) {
                             if (file_exists(public_path($data->imagem))) {
                                 $srcImagem = asset($data->imagem);

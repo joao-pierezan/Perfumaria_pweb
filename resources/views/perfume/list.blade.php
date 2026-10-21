@@ -30,63 +30,37 @@
         </div>
     </form>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    @foreach ($dados as $item)
-       @php
-    $imagemPerfume = asset('images/sem-foto.avif'); // Imagem padrão (fallback)
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach ($dados as $item)
+            <div class="col">
+                <div class="card h-100 border shadow-sm">
 
-    if (!empty($item->imagem)) {
-        // 1. Caminhos para verificar se está no Storage
-        $caminhoStorageDisk = storage_path('app/public/' . $item->imagem);
-        $caminhoStoragePublic = public_path('storage/' . $item->imagem);
+                    <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 200px;">
+                        @if(!empty($item->imagem))
+                            <img src="{{ asset('storage/' . $item->imagem) }}"
+                                class="img-fluid mh-100" 
+                                style="object-fit: contain;">
+                        @endif
+                    </div>
 
-        // 2. Caminho para verificar se está na pasta public/Imagens
-        $caminhoPublicImagens = public_path('Imagens/' . $item->imagem);
-
-        if (file_exists($caminhoStorageDisk) || file_exists($caminhoStoragePublic)) {
-            // Se estiver no storage, usa a rota do storage
-            $imagemPerfume = asset('storage/' . $item->imagem);
-        } elseif (file_exists($caminhoPublicImagens)) {
-            // Se estiver na pasta Imagens, usa a rota direta
-            $imagemPerfume = asset('Imagens/' . $item->imagem);
-        }
-    }
-@endphp
-        <div class="col">
-            <div class="card h-100 border shadow-sm">
-                <!-- Imagem do Perfume -->
-                <div class="bg-light text-center p-3 border-bottom d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <img src="{{ $imagemPerfume }}"
-                        alt="{{ $item->nome }}" 
-                        class="img-fluid mh-100" 
-                        style="object-fit: contain;">
-                </div>
-
-                <!-- Detalhes: Marca, Nome e Preço -->
-                <div class="card-body d-flex flex-column text-center">
-                    <small class="text-muted text-uppercase fw-bold mb-1">{{ $item->marca }}</small>
-                    <h5 class="card-title fw-semibold mb-2">{{ $item->nome }}</h5>
-                    
-                    <div class="mt-auto pt-2">
-                        <span class="fs-6 text-muted">Preço:</span>
-                        <h4 class="text-success fw-bold mb-3">R$ {{ number_format((float)$item->preco, 2, ',', '.') }}</h4>
+                    <!-- Detalhes: Marca, Nome e Preço -->
+                    <div class="card-body d-flex flex-column text-center">
+                        <small class="text-muted text-uppercase fw-bold mb-1">{{ $item->marca }}</small>
+                        <h5 class="card-title fw-semibold mb-2">{{ $item->nome }}</h5>
                         
-                        <!-- Botão Comprar -->
-                        <a href="{{ route('perfume.show', $item->id) }}" class="btn btn-primary w-100 fw-bold">
-                            Comprar
-                        </a>
+                        <div class="mt-auto pt-2">
+                            <span class="fs-6 text-muted">Preço:</span>
+                            <h4 class="text-success fw-bold mb-3">R$ {{ number_format((float)$item->preco, 2, ',', '.') }}</h4>
+                            
+                            <!-- Botão Comprar -->
+                            <a href="{{ route('perfume.show', $item->id) }}" class="btn btn-primary w-100 fw-bold">
+                                Comprar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-</div>
-
-    <!-- Mensagem de lista vazia -->
-    @if($dados->isEmpty())
-        <div class="alert alert-info mt-4">
-            Nenhum perfume encontrado no catálogo.
-        </div>
-    @endif
+        @endforeach
+    </div>
 
 @stop
