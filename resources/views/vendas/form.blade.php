@@ -52,7 +52,6 @@
             <label for="valor_total">Valor Total (R$)</label>
             <input type="number" step="0.01" name="valor_total" id="valor_total" class="form-control" 
                    value="{{ old('valor_total', $a->valor_total ?? '0.00') }}" readonly required>
-            <small class="text-muted">Calculado automaticamente com base nos perfumes selecionados.</small>
         </div>
 
         <button type="submit" class="btn btn-success">{{ isset($a->id) ? 'Atualizar' : 'Salvar' }}</button>

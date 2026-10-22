@@ -130,8 +130,6 @@
 
         </div>
     </div>
-
-    {{-- GRÁFICO DE LONGEVIDADE (ESTILO FRAGRANTICA) --}}
     @php
         $vCurto = $votosLongevidade['curto'] ?? 0;
         $vMedio = $votosLongevidade['medio'] ?? 0;
@@ -152,11 +150,10 @@
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                 </svg>
             </div>
-            <h6 class="fw-bold text-uppercase mb-0 text-secondary" style="letter-spacing: 2px;">LONGEVITY</h6>
-            <small class="text-muted">Longevidade e Fixação na Pele ({{ $totVotos }} {{ $totVotos == 1 ? 'voto' : 'votos' }})</small>
+            <h6 class="fw-bold text-uppercase mb-0 text-secondary" style="letter-spacing: 2px;">Logevidade</h6>
+            <small class="text-muted">Longevidade del perfume </small>
         </div>  
 
-        {{-- Barras de Longevidade --}}
         <div class="mx-auto" style="width: 100%; max-width: 550px;">
             {{-- Opção 1: Curto --}}
             <div class="row align-items-center mb-3">
@@ -192,7 +189,6 @@
                 </div>
             </div>
 
-            {{-- Opção 3: Longo --}}
             <div class="row align-items-center mb-2">
                 <div class="col-4 text-secondary fw-semibold text-nowrap">
                     Longa duração
