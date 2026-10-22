@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('nota',3,1);
             $table->string('texto');
             $table->string('autor');
+            $table->string('longevidade', 20)->default('medio');
             $table->timestamps();
         });
     }

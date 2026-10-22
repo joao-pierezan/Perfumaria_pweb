@@ -243,4 +243,39 @@
         </div>
     @endif
 
+    {{-- GRÁFICO DE VENDAS POR MARCA --}}
+    @if(isset($chart))
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill mb-2 fw-semibold">
+                        <i class="bi bi-graph-up me-1"></i> Desempenho Comercial
+                    </span>
+                    <h3 class="fw-bold mb-2">Vendas Realizadas por Marca</h3>
+                    <p class="text-muted mb-4">
+                        Acompanhe a preferência da nossa clientela e a participação de cada grande casa de perfumaria nas vendas totais registradas na loja.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('vendas.chart') }}" class="btn btn-primary">
+                            <i class="bi bi-pie-chart-fill me-1"></i> Ver Relatório Completo
+                        </a>
+                        <a href="{{ route('vendas.index') }}" class="btn btn-outline-secondary">
+                            Gerenciar Vendas
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 d-flex justify-content-center align-items-center">
+                    <div style="width: 100%; max-width: 580px;">
+                        {!! $chart->container() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if(isset($chart))
+        <script src="{{ $chart->cdn() }}"></script>
+        {{ $chart->script() }}
+    @endif
+
 @stop

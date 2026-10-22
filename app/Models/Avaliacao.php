@@ -9,7 +9,7 @@ class Avaliacao extends Model
 {
     use HasFactory;
     protected $table = 'avaliacoes';
-    protected $fillable = ['perfume', 'nota', 'texto', 'autor'];
+    protected $fillable = ['perfume', 'nota', 'texto', 'autor', 'longevidade'];
 
     public function usuario()
     {

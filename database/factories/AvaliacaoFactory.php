@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Avaliacao;
-use App\Models\Usuario; // Certifique-se de importar o MODEL aqui, não a UsuarioFactory
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Perfume;
 
@@ -22,6 +22,7 @@ class AvaliacaoFactory extends Factory
             'nota' => fake()->randomFloat(2, 0, 10),
             'texto' => fake()->text(200),
             'autor' => $usuario->id,
+            'longevidade' => fake()->randomElement(['curto', 'medio', 'longo']),
         ];
     }
 }

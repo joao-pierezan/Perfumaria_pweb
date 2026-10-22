@@ -65,6 +65,21 @@
                 <input type="number" step="0.01" min="0" max="10" name="nota" class="form-control" value="{{ old('nota', $data->nota ?? '') }}" required>
             </div>
 
+            <div class="col-6 mb-3">
+                <label for="longevidade">Longevidade (Fixação do Perfume)</label>
+                <select name="longevidade" id="longevidade" class="form-select" required>
+                    <option value="curto" {{ old('longevidade', $data->longevidade ?? 'medio') == 'curto' ? 'selected' : '' }}>
+                        Curto (1 a 3 horas)
+                    </option>
+                    <option value="medio" {{ old('longevidade', $data->longevidade ?? 'medio') == 'medio' ? 'selected' : '' }}>
+                        Médio (4 a 7 horas)
+                    </option>
+                    <option value="longo" {{ old('longevidade', $data->longevidade ?? 'medio') == 'longo' ? 'selected' : '' }}>
+                        Longo (8+ horas)
+                    </option>
+                </select>
+            </div>
+
             <div class="col-12 mb-3">
                 <label for="texto">Resenha</label>
                 <textarea name="texto" class="form-control" rows="4" required>{{ old('texto', $data->texto ?? '') }}</textarea>

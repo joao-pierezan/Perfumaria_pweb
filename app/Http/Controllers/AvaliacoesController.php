@@ -33,12 +33,14 @@ class AvaliacoesController extends Controller
             'perfume' => 'required',
             'nota' => 'required|numeric|min:0|max:10',
             'texto' => 'required',
-            'autor' => 'required'
+            'autor' => 'required',
+            'longevidade' => 'required|in:curto,medio,longo',
         ], [
             'perfume.required' => "O perfume é obrigatório",
             'nota.required' => "A nota é obrigatória",
             'texto.required' => "A resenha é obrigatória",
-            'autor.required' => "O autor é obrigatório"
+            'autor.required' => "O autor é obrigatório",
+            'longevidade.required' => "A longevidade é obrigatória",
         ]);
     }
 

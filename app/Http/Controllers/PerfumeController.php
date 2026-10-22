@@ -189,6 +189,14 @@ class PerfumeController extends Controller
         $avaliacoes = $query->get();
         $item->setRelation('avaliacoes', $avaliacoes);
 
-        return view('perfume.show', compact('item'));
+        // Votos de Longevidade deste perfume
+        $votosLongevidade = [
+            'curto' => Avaliacao::where('perfume', $id)->where('longevidade', 'curto')->count(),
+            'medio' => Avaliacao::where('perfume', $id)->where('longevidade', 'medio')->count(),
+            'longo' => Avaliacao::where('perfume', $id)->where('longevidade', 'longo')->count(),
+        ];
+        $totalVotosLongevidade = array_sum($votosLongevidade);
+
+        return view('perfume.show', compact('item', 'votosLongevidade', 'totalVotosLongevidade'));
     }
 }

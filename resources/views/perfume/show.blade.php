@@ -131,6 +131,86 @@
         </div>
     </div>
 
+    {{-- GRÁFICO DE LONGEVIDADE (ESTILO FRAGRANTICA) --}}
+    @php
+        $vCurto = $votosLongevidade['curto'] ?? 0;
+        $vMedio = $votosLongevidade['medio'] ?? 0;
+        $vLongo = $votosLongevidade['longo'] ?? 0;
+        $totVotos = $totalVotosLongevidade ?? ($vCurto + $vMedio + $vLongo);
+
+        $pCurto = $totVotos > 0 ? round(($vCurto / $totVotos) * 100) : 0;
+        $pMedio = $totVotos > 0 ? round(($vMedio / $totVotos) * 100) : 0;
+        $pLongo = $totVotos > 0 ? round(($vLongo / $totVotos) * 100) : 0;
+    @endphp
+
+    <div class="card shadow-sm border rounded-4 mb-5 bg-white p-4">
+        <div class="text-center mb-3">
+            {{-- Ícone Relógio Estilo Fragrantica --}}
+            <div class="mb-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="#555" class="bi bi-clock-history" viewBox="0 0 16 16">
+                    <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.123.331zm2.437 1.353a7 7 0 0 0-.82-.622l.484-.874a8 8 0 0 1 1.002.756l-.666.74zm1.905 2.193a7 7 0 0 0-.583-.846l.74-.666a8 8 0 0 1 .715.998l-.872.514zm1.096 2.45a7 7 0 0 0-.294-.987l.977-.217a8 8 0 0 1 .353 1.126zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                </svg>
+            </div>
+            <h6 class="fw-bold text-uppercase mb-0 text-secondary" style="letter-spacing: 2px;">LONGEVITY</h6>
+            <small class="text-muted">Longevidade e Fixação na Pele ({{ $totVotos }} {{ $totVotos == 1 ? 'voto' : 'votos' }})</small>
+        </div>  
+
+        {{-- Barras de Longevidade --}}
+        <div class="mx-auto" style="width: 100%; max-width: 550px;">
+            {{-- Opção 1: Curto --}}
+            <div class="row align-items-center mb-3">
+                <div class="col-4 text-secondary fw-semibold text-nowrap">
+                    Curta duração
+                </div>
+                <div class="col-2 text-center text-muted fw-bold">
+                    {{ $vCurto }}
+                </div>
+                <div class="col-6">
+                    <div class="progress" style="height: 14px; background-color: #e9ecef; border-radius: 20px;">
+                        <div class="progress-bar rounded-pill" role="progressbar" 
+                             style="width: {{ $pCurto }}%; background-color: #29c2d6;" 
+                             aria-valuenow="{{ $pCurto }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Opção 2: Médio --}}
+            <div class="row align-items-center mb-3">
+                <div class="col-4 text-secondary fw-semibold text-nowrap">
+                    Duração moderada
+                </div>
+                <div class="col-2 text-center text-muted fw-bold">
+                    {{ $vMedio }}
+                </div>
+                <div class="col-6">
+                    <div class="progress" style="height: 14px; background-color: #e9ecef; border-radius: 20px;">
+                        <div class="progress-bar rounded-pill" role="progressbar" 
+                             style="width: {{ $pMedio }}%; background-color: #29c2d6;" 
+                             aria-valuenow="{{ $pMedio }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Opção 3: Longo --}}
+            <div class="row align-items-center mb-2">
+                <div class="col-4 text-secondary fw-semibold text-nowrap">
+                    Longa duração
+                </div>
+                <div class="col-2 text-center text-muted fw-bold">
+                    {{ $vLongo }}
+                </div>
+                <div class="col-6">
+                    <div class="progress" style="height: 14px; background-color: #e9ecef; border-radius: 20px;">
+                        <div class="progress-bar rounded-pill" role="progressbar" 
+                             style="width: {{ $pLongo }}%; background-color: #29c2d6;" 
+                             aria-valuenow="{{ $pLongo }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card shadow-sm border mb-4">
         <div class="card-header bg-light py-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -166,8 +246,21 @@
             @forelse ($item->avaliacoes as $avaliacao)
                 <div class="card mb-3 border bg-white">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                        <div>
-                            <strong>{{ $avaliacao->usuario?->nome}}</strong>
+                        <div class="d-flex align-items-center gap-2">
+                            <strong>{{ $avaliacao->usuario?->nome }}</strong>
+                            @if(!empty($avaliacao->longevidade))
+                                @php
+                                    $mapLongevidade = [
+                                        'curto' => ['label' => 'Fixação Curta (1-3h)', 'class' => 'bg-secondary-subtle text-secondary'],
+                                        'medio' => ['label' => 'Fixação Moderada (4-7h)', 'class' => 'bg-info-subtle text-info-emphasis'],
+                                        'longo' => ['label' => 'Fixação Longa (8h+)', 'class' => 'bg-success-subtle text-success-emphasis'],
+                                    ];
+                                    $cfg = $mapLongevidade[$avaliacao->longevidade] ?? ['label' => ucfirst($avaliacao->longevidade), 'class' => 'bg-light text-dark'];
+                                @endphp
+                                <span class="badge {{ $cfg['class'] }} border">
+                                    <i class="bi bi-clock-history me-1"></i>{{ $cfg['label'] }}
+                                </span>
+                            @endif
                         </div>
                         <span class="badge bg-warning text-dark fs-6">
                             Nota: {{ $avaliacao->nota }} / 10

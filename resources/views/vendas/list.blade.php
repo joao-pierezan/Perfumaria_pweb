@@ -2,15 +2,38 @@
 @section('titulo', 'Lista de Vendas')
 @section('conteudo')
     <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Lista de Vendas</h2>
-            <a href="{{ route('vendas.create') }}" class="btn btn-success">Nova Venda</a>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+            <div>
+                <h2 class="mb-0">Lista de Vendas</h2>
+                <small class="text-muted">Gerenciamento e histórico de pedidos realizados</small>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="{{ route('vendas.create') }}" class="btn btn-success">
+                    <i class="bi bi-plus-lg me-1"></i> Nova Venda
+                </a>
+            </div>
         </div>
 
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        {{-- GRÁFICO DE PIZZA NA LISTAGEM --}}
+        @if(isset($chart))
+            <div class="card shadow-sm border-0 mb-4 rounded-3">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+                    <h5 class="mb-0 fw-semibold text-dark">
+                        <i class="bi bi-pie-chart-fill text-primary me-2"></i> Gráfico de Pizza: Vendas por Marca
+                    </h5>
+                </div>
+                <div class="card-body p-4 d-flex justify-content-center align-items-center bg-light bg-opacity-25">
+                    <div style="width: 100%; max-width: 650px;">
+                        {!! $chart->container() !!}
+                    </div>
+                </div>
             </div>
         @endif
 
@@ -28,7 +51,7 @@
         </form>
 
         <!-- Tabela de Listagem -->
-        <div class="table-responsive shadow-sm border rounded p-3 bg-white">
+        <div class="table-responsive shadow-sm border rounded p-3 bg-white mb-5">
             <table class="table table-striped table-hover align-middle mb-0">
                 <thead class="table-light">
                     <tr>
@@ -40,7 +63,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($a ?? [] as $item)
+                    @forelse ($a ?? $dados ?? [] as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ trim(($item->perfume->marca ?? '') . ' ' . ($item->perfume->nome ?? $item->perfume->name ?? '')) }}</td>
@@ -64,4 +87,9 @@
             </table>
         </div>
     </div>
+
+    @if(isset($chart))
+        <script src="{{ $chart->cdn() }}"></script>
+        {{ $chart->script() }}
+    @endif
 @stop
