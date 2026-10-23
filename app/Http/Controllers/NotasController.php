@@ -17,7 +17,8 @@ class NotasController extends Controller
 
     public function create()
     {
-        return view('notas.form');
+        $data = new Notas();
+        return view('notas.form', compact('data'));
     }
 
     public function validateForm(Request $request)
@@ -45,6 +46,8 @@ class NotasController extends Controller
             $diretorio = "notas"; 
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
             $data['imagem'] = $diretorio . '/' . $nome_imagem;
+        } else {
+            $data['imagem'] = null;
         }
 
         Notas::create($data);

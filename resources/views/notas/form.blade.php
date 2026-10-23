@@ -29,6 +29,7 @@
                 <div class="col-12 mb-3">
                     <label for="imagem" class="form-label fw-bold">Imagem da Nota</label>
                     @php
+                        $srcImagem = null;
                         if (!empty($data->imagem)) {
                             if (file_exists(public_path($data->imagem))) {
                                 $srcImagem = asset($data->imagem);
@@ -39,10 +40,15 @@
                             }
                         }
                     @endphp
-                                        <div class="d-flex align-items-center gap-3">
-                        <img src="{{ $srcImagem }}" class="rounded shadow-sm border" width="90" height="90" style="object-fit: cover;" alt="Prévia da Imagem" />
+                    <div class="d-flex align-items-center gap-3">
+                        @if (!empty($srcImagem))
+                            <img src="{{ $srcImagem }}" class="rounded shadow-sm border" width="90" height="90" style="object-fit: cover;" alt="Prévia da Imagem" />
+                        @endif
                         <div class="flex-grow-1">
-                            <input type="file" name="imagem" class="form-control" accept="image/*">
+                            <input type="file" name="imagem" class="form-control @error('imagem') is-invalid @enderror" accept="image/*">
+                            @error('imagem')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

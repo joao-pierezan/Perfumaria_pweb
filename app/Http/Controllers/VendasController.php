@@ -5,13 +5,44 @@ use Illuminate\Http\Request;
 use App\Models\Venda;
 use App\Models\Usuario;
 use App\Models\Perfume;
+use App\Models\Avaliacao;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VendasController extends Controller
 {
+    public function report()
+    {
+        $vendasPorMarca = Venda::join('perfumes', 'vendas.perfume_id', '=', 'perfumes.id')
+            ->selectRaw('perfumes.marca, count(vendas.id) as total_vendas, sum(vendas.valor_total) as total_valor')
+            ->groupBy('perfumes.marca')
+            ->orderByDesc('total_vendas')
+            ->get();
+
+        $totalGeralVendas = (int) $vendasPorMarca->sum('total_vendas');
+        $totalGeralValor = (float) $vendasPorMarca->sum('total_valor');
+
+        foreach ($vendasPorMarca as $item) {
+            $item->porcentagem_vendas = $totalGeralVendas > 0 ? round(($item->total_vendas / $totalGeralVendas) * 100, 2) : 0;
+            $item->porcentagem_valor = $totalGeralValor > 0 ? round(($item->total_valor / $totalGeralValor) * 100, 2) : 0;
+        }
+
+        $data = [
+            'titulo' => 'Relatório de Vendas por Marca',
+            'date' => date('d/m/Y'),
+            'hora' => date('H:i'),
+            'dados' => $vendasPorMarca,
+            'totalGeralVendas' => $totalGeralVendas,
+            'totalGeralValor' => $totalGeralValor,
+        ];
+
+        $pdf = Pdf::loadView('vendas.report', $data);
+
+        return $pdf->download('relatorio_vendas_por_marca.pdf');
+    }
     public function index()
     {
-        $a = Venda::with(['perfume', 'usuario'])->get();
+        $a = Venda::with(['perfume', 'usuario', 'avaliacao'])->get();
         $dados = $a;
 
         $vendasPorMarca = Venda::join('perfumes', 'vendas.perfume_id', '=', 'perfumes.id')
@@ -102,7 +133,7 @@ class VendasController extends Controller
         $perfumes = $request->input('perfumes');
         $usuarioId = $request->input('usuario_id');
 
-        // Cria uma venda para cada perfume selecionado
+        // Cria uma venda para cada perfume selecionado (sem avaliação automática, deixando o campo livre para cadastro manual)
         foreach ($perfumes as $perfumeId) {
             $perfume = Perfume::find($perfumeId);
             Venda::create([
@@ -171,11 +202,11 @@ class VendasController extends Controller
     {
         if (!empty($request->valor)) {
             $valor = $request->valor;
-            $a = Venda::with(['perfume', 'usuario'])->whereHas('perfume', function ($q) use ($valor) {
+            $a = Venda::with(['perfume', 'usuario', 'avaliacao'])->whereHas('perfume', function ($q) use ($valor) {
                 $q->where('nome', 'like', "%$valor%");
             })->get();
         } else {
-            $a = Venda::with(['perfume', 'usuario'])->get();
+            $a = Venda::with(['perfume', 'usuario', 'avaliacao'])->get();
         }
 
         return view('vendas.list', compact('a'));

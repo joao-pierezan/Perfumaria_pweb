@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Venda;
 use App\Models\Perfume;
 use App\Models\Usuario;
+use App\Models\Avaliacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,9 +24,28 @@ class VendaFactory extends Factory
         $usuario = Usuario::all()->isNotEmpty() ? Usuario::all()->random() : Usuario::factory()->create();
 
         return [
-            'usuario_id' => $usuario->id,
-            'perfume_id' => $perfume->id,
+            'usuario_id'  => $usuario->id,
+            'perfume_id'  => $perfume->id,
             'valor_total' => $perfume->preco,
         ];
+    }
+
+    /**
+     * Configura callback pós-criação para garantir relação 1:1 total
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (Venda $venda) {
+            if (!$venda->avaliacao()->exists()) {
+                Avaliacao::create([
+                    'venda_id'    => $venda->id,
+                    'perfume'     => $venda->perfume_id,
+                    'autor'       => $venda->usuario_id,
+                    'nota'        => fake()->randomFloat(2, 0, 10),
+                    'texto'       => fake()->text(200),
+                    'longevidade' => fake()->randomElement(['curto', 'medio', 'longo']),
+                ]);
+            }
+        });
     }
 }

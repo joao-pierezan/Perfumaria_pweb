@@ -9,7 +9,7 @@ class Avaliacao extends Model
 {
     use HasFactory;
     protected $table = 'avaliacoes';
-    protected $fillable = ['perfume', 'nota', 'texto', 'autor', 'longevidade'];
+    protected $fillable = ['perfume', 'nota', 'texto', 'autor', 'longevidade', 'venda_id'];
 
     public function usuario()
     {
@@ -19,5 +19,10 @@ class Avaliacao extends Model
     public function perfumeRelacionado()
     {
         return $this->belongsTo(Perfume::class, 'perfume');
+    }
+
+    public function venda()
+    {
+        return $this->belongsTo(Venda::class, 'venda_id');
     }
 }

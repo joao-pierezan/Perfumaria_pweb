@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Avaliacao;
 use App\Models\Usuario;
 use App\Models\Perfume;
+use App\Models\Venda;
 
 class AvaliacoesController extends Controller
 {
     public function index()
     {
-        $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->get();
+        $dados = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->get();
         return view('avaliacoes.list', compact('dados'));
     }
 
@@ -19,28 +20,41 @@ class AvaliacoesController extends Controller
     {
         $usuarios = Usuario::all();
         $perfumes = Perfume::all();
+        $vendas = Venda::with(['perfume', 'usuario'])->get();
         $data = new Avaliacao();
 
-        $data->perfume = $request->perfume_id;
+        if ($request->filled('venda_id')) {
+            $venda = Venda::find($request->venda_id);
+            if ($venda) {
+                $data->venda_id = $venda->id;
+                $data->perfume = $venda->perfume_id;
+                $data->autor = $venda->usuario_id;
+            }
+        } elseif ($request->filled('perfume_id')) {
+            $data->perfume = $request->perfume_id;
+        }
 
-        return view('avaliacoes.form', compact('usuarios', 'perfumes', 'data'));
+        return view('avaliacoes.form', compact('usuarios', 'perfumes', 'vendas', 'data'));
     }
 
-    public function validateForm(Request $request)
+    public function validateForm(Request $request, $id = null)
     {
-        // Ajustado para 'perfume' e 'autor' conforme o Model
+        // Ajustado para 'perfume', 'autor' e 'venda_id' conforme o Model (relacionamento 1:1)
         $request->validate([
-            'perfume' => 'required',
-            'nota' => 'required|numeric|min:0|max:10',
-            'texto' => 'required',
-            'autor' => 'required',
+            'perfume'     => 'required',
+            'nota'        => 'required|numeric|min:0|max:10',
+            'texto'       => 'required',
+            'autor'       => 'required',
             'longevidade' => 'required|in:curto,medio,longo',
+            'venda_id'    => 'nullable|exists:vendas,id|unique:avaliacoes,venda_id,' . $id,
         ], [
-            'perfume.required' => "O perfume é obrigatório",
-            'nota.required' => "A nota é obrigatória",
-            'texto.required' => "A resenha é obrigatória",
-            'autor.required' => "O autor é obrigatório",
+            'perfume.required'     => "O perfume é obrigatório",
+            'nota.required'        => "A nota é obrigatória",
+            'texto.required'       => "A resenha é obrigatória",
+            'autor.required'       => "O autor é obrigatório",
             'longevidade.required' => "A longevidade é obrigatória",
+            'venda_id.exists'      => "A venda informada não existe",
+            'venda_id.unique'      => "Esta venda já possui uma avaliação vinculada (relacionamento 1:1)",
         ]);
     }
 
@@ -48,11 +62,14 @@ class AvaliacoesController extends Controller
     {
         $this->validateForm($request);
 
-        // Apanha o ID do perfume pela variável 'perfume'
         $perfumeId = $request->perfume;
+        $data = $request->all();
 
-        // Como o fillable do model tem 'perfume' e 'autor', o create() funciona diretamente
-        Avaliacao::create($request->all());
+        if (empty($data['venda_id'])) {
+            $data['venda_id'] = null;
+        }
+
+        Avaliacao::create($data);
         
         return redirect('perfume/' . $perfumeId)->with("success", 'Registro salvo com sucesso!');
     }
@@ -62,12 +79,13 @@ class AvaliacoesController extends Controller
         $data = Avaliacao::findOrFail($id);
         $usuarios = Usuario::all();
         $perfumes = Perfume::all();
-        return view('avaliacoes.form', compact('data', 'usuarios', 'perfumes'));
+        $vendas = Venda::with(['perfume', 'usuario'])->get();
+        return view('avaliacoes.form', compact('data', 'usuarios', 'perfumes', 'vendas'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->validateForm($request);
+        $this->validateForm($request, $id);
 
         Avaliacao::findOrFail($id)->update($request->all());
         $perfumeId = $request->perfume;
@@ -78,7 +96,8 @@ class AvaliacoesController extends Controller
     public function destroy($id)
     {
         $avaliacao = Avaliacao::findOrFail($id);
-        $perfumeId = $avaliacao->perfume; // Usa a coluna 'perfume'
+        $perfumeId = $avaliacao->perfume;
+
         $avaliacao->delete();
 
         return redirect('perfume/' . $perfumeId)->with("success", 'Registro removido com sucesso!');
@@ -89,7 +108,7 @@ class AvaliacoesController extends Controller
         if (!empty($request->valor)) {
             $valor = $request->valor;
             if ($request->tipo === 'perfume') {
-                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->whereHas(
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->whereHas(
                     'perfumeRelacionado',
                     function ($q) use ($valor) {
                         $q->where('nome', 'like', "%$valor%")
@@ -97,23 +116,23 @@ class AvaliacoesController extends Controller
                     }
                 )->get();
             } elseif ($request->tipo === 'autor') {
-                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->whereHas(
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->whereHas(
                     'usuario',
                     function ($q) use ($valor) {
                         $q->where('nome', 'like', "%$valor%");
                     }
                 )->get();
             } else {
-                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where(
+                $dados = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->where(
                     $request->tipo,
                     'like',
                     "%$valor%"
                 )->get();
             }
         } else {
-            $dados = Avaliacao::with(['usuario', 'perfumeRelacionado'])->get();
+            $dados = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->get();
         }
 
-        return view('perfume.show', compact('dados'));
+        return view('avaliacoes.list', compact('dados'));
     }
 }

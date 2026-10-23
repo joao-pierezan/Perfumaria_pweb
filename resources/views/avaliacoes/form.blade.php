@@ -19,6 +19,29 @@
 
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
             
+            <!-- Venda vinculada (Relacionamento 1:1) -->
+            <div class="col-12 mb-3">
+                <label for="venda_id" class="fw-semibold">Venda Associada (Relacionamento 1:1)</label>
+                <select name="venda_id" id="venda_id" class="form-select @error('venda_id') is-invalid @enderror">
+                    <option value="">Sem venda vinculada (Avaliação direta)</option>
+                    @foreach ($vendas ?? [] as $vendaItem)
+                        @php
+                            $vendaVal = $vendaItem->id;
+                            $isSelectedVenda = (
+                                old('venda_id', $data->venda_id ?? request('venda_id')) == $vendaVal
+                            );
+                        @endphp
+                        <option value="{{ $vendaVal }}" {{ $isSelectedVenda ? 'selected' : '' }}>
+                            Venda #{{ $vendaItem->id }} &bull; {{ $vendaItem->perfume->nome ?? 'Perfume' }} (Comprador: {{ $vendaItem->usuario->nome ?? 'Usuário' }}) - R$ {{ number_format($vendaItem->valor_total, 2, ',', '.') }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('venda_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <small class="text-muted">Cada venda só pode possuir no máximo uma avaliação no banco de dados.</small>
+            </div>
+
             <!-- CORRIGIDO: name="autor" para coincidir com o Model e Validação -->
             <div class="col-6 mb-3">
                 <label for="autor">Autor / Usuário</label>

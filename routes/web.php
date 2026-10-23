@@ -36,6 +36,11 @@ Route::post(
 )->name('perfume.search');
 
 Route::get(
+    '/perfume/report-longevidade/{id}',
+    [PerfumeController::class, 'reportLongevidade']
+)->name('perfume.reportLongevidade');
+
+Route::get(
     '/perfume/{id}',
     [PerfumeController::class, 'show']
 )->name('perfume.show');
@@ -112,6 +117,7 @@ Route::put('/notas/update/{id}', [NotasController::class, 'update'])->name('nota
 Route::delete('/notas/{id}', [NotasController::class, 'destroy'])->name('notas.destroy');
 Route::post('/notas/search', [NotasController::class, 'search'])->name('notas.search');
 
+Route::get('vendas/report', [VendasController::class, 'report'])->name('vendas.report');
 Route::get('vendas/chart', [VendasController::class, 'chart'])->name('vendas.chart');
 Route::get('vendas/search', [VendasController::class, 'search'])->name('vendas.search');
 Route::resource('vendas', VendasController::class);

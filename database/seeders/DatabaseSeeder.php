@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             UsuarioSeeder::class,
             NotasSeeder::class,
             PerfumeSeeder::class,
-            AvaliacaoSeeder::class,
             VendasSeeder::class,
+            AvaliacaoSeeder::class,
         ]);
     }
 }

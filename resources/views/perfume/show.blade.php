@@ -39,6 +39,9 @@
                 <a href="{{ url('vendas/create?perfume_id=' . $item->id) }}" class="btn btn-primary btn-lg px-4 fw-bold">
                     Comprar Agora
                 </a>
+                <a href="{{ route('perfume.reportLongevidade', $item->id) }}" class="btn btn-danger">
+                    <i class="bi bi-file-earmark-pdf me-1"></i> Relatório de Longevidade
+                </a>
                 <a href="{{ route('perfume.edit', $item->id) }}" class="btn btn-outline-warning">
                     Editar Perfume
                 </a>
@@ -150,8 +153,11 @@
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                 </svg>
             </div>
-            <h6 class="fw-bold text-uppercase mb-0 text-secondary" style="letter-spacing: 2px;">Logevidade</h6>
-            <small class="text-muted">Longevidade del perfume </small>
+            <h6 class="fw-bold text-uppercase mb-1 text-secondary" style="letter-spacing: 2px;">Longevidade</h6>
+            <small class="text-muted d-block mb-2">Longevidade do perfume com base nas avaliações</small>
+            <a href="{{ route('perfume.reportLongevidade', $item->id) }}" class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-file-earmark-pdf me-1"></i> Baixar Relatório em PDF
+            </a>
         </div>  
 
         <div class="mx-auto" style="width: 100%; max-width: 550px;">
@@ -244,6 +250,11 @@
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center gap-2">
                             <strong>{{ $avaliacao->usuario?->nome }}</strong>
+                            @if(!empty($avaliacao->venda_id))
+                                <span class="badge bg-primary-subtle text-primary border" title="Avaliação vinculada à Venda #{{ $avaliacao->venda_id }}">
+                                    <i class="bi bi-patch-check me-1"></i>Compra #{{ $avaliacao->venda_id }}
+                                </span>
+                            @endif
                             @if(!empty($avaliacao->longevidade))
                                 @php
                                     $mapLongevidade = [

@@ -33,7 +33,7 @@
             @endif
         </div>
 
-        @if ($errors->any())
+        @if (!empty($errors) && $errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <b>Por favor, verifique os erros abaixo</b>
                 <ul class="mb-0 mt-1">

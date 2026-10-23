@@ -7,6 +7,8 @@ use App\Models\Perfume;
 use App\Models\Notas;
 use App\Models\Avaliacao;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 
 class PerfumeController extends Controller
 {
@@ -173,7 +175,7 @@ class PerfumeController extends Controller
             'notasFundo'
         ])->findOrFail($id);
 
-        $query = Avaliacao::with(['usuario', 'perfumeRelacionado'])->where('perfume', $id);
+        $query = Avaliacao::with(['usuario', 'perfumeRelacionado', 'venda'])->where('perfume', $id);
 
         if (!empty($request->valor)) {
             $valor = $request->valor;
@@ -198,5 +200,53 @@ class PerfumeController extends Controller
         $totalVotosLongevidade = array_sum($votosLongevidade);
 
         return view('perfume.show', compact('item', 'votosLongevidade', 'totalVotosLongevidade'));
+    }
+
+    public function reportLongevidade($id)
+    {
+        $item = Perfume::with(['avaliacoes.usuario', 'notasTopo', 'notasCoracao', 'notasFundo'])->findOrFail($id);
+
+        $votosCurto = $item->avaliacoes->where('longevidade', 'curto')->count();
+        $votosMedio = $item->avaliacoes->where('longevidade', 'medio')->count();
+        $votosLongo = $item->avaliacoes->where('longevidade', 'longo')->count();
+        $totalVotos = $votosCurto + $votosMedio + $votosLongo;
+
+        $percCurto = $totalVotos > 0 ? round(($votosCurto / $totalVotos) * 100, 1) : 0;
+        $percMedio = $totalVotos > 0 ? round(($votosMedio / $totalVotos) * 100, 1) : 0;
+        $percLongo = $totalVotos > 0 ? round(($votosLongo / $totalVotos) * 100, 1) : 0;
+
+        $mediaNota = $item->avaliacoes->count() > 0 ? round($item->avaliacoes->avg('nota'), 1) : null;
+
+        $longevidadePredominante = 'Sem avaliações';
+        if ($totalVotos > 0) {
+            if ($votosLongo >= $votosMedio && $votosLongo >= $votosCurto) {
+                $longevidadePredominante = 'Longa duração (8h+)';
+            } elseif ($votosMedio >= $votosCurto) {
+                $longevidadePredominante = 'Duração moderada (4-7h)';
+            } else {
+                $longevidadePredominante = 'Curta duração (1-3h)';
+            }
+        }
+
+        $data = [
+            'titulo' => 'Relatório de Longevidade - ' . $item->nome,
+            'date' => date('d/m/Y'),
+            'hora' => date('H:i'),
+            'perfume' => $item,
+            'votosCurto' => $votosCurto,
+            'votosMedio' => $votosMedio,
+            'votosLongo' => $votosLongo,
+            'totalVotos' => $totalVotos,
+            'percCurto' => $percCurto,
+            'percMedio' => $percMedio,
+            'percLongo' => $percLongo,
+            'mediaNota' => $mediaNota,
+            'longevidadePredominante' => $longevidadePredominante,
+            'avaliacoes' => $item->avaliacoes,
+        ];
+
+        $pdf = Pdf::loadView('perfume.report_longevidade', $data);
+
+        return $pdf->download('relatorio_longevidade_' . Str::slug($item->nome) . '.pdf');
     }
 }

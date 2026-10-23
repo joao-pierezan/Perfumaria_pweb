@@ -24,4 +24,9 @@ class Venda extends Model
     {
         return $this->belongsTo(Usuario::class, 'usuario_id');
     }
+
+    public function avaliacao()
+    {
+        return $this->hasOne(Avaliacao::class, 'venda_id');
+    }
 }

@@ -8,6 +8,9 @@
                 <small class="text-muted">Gerenciamento e histórico de pedidos realizados</small>
             </div>
             <div class="d-flex gap-2">
+                <a href="{{ route('vendas.report') }}" class="btn btn-danger">
+                    <i class="bi bi-file-earmark-pdf me-1"></i> Relatório de Vendas (PDF)
+                </a>
                 <a href="{{ route('vendas.create') }}" class="btn btn-success">
                     <i class="bi bi-plus-lg me-1"></i> Nova Venda
                 </a>
@@ -59,6 +62,7 @@
                         <th>Perfume</th>
                         <th>Usuário / Comprador</th>
                         <th>Valor Total</th>
+                        <th>Avaliação (1:1)</th>
                         <th class="text-end">Ações</th>
                     </tr>
                 </thead>
@@ -69,6 +73,17 @@
                             <td>{{ trim(($item->perfume->marca ?? '') . ' ' . ($item->perfume->nome ?? $item->perfume->name ?? '')) }}</td>
                             <td>{{ $item->usuario->nome ?? $item->usuario->name ?? 'N/A' }}</td>
                             <td>R$ {{ number_format($item->valor_total ?? 0, 2, ',', '.') }}</td>
+                            <td>
+                                @if ($item->avaliacao)
+                                    <a href="{{ route('avaliacoes.edit', $item->avaliacao->id) }}" class="badge bg-success text-decoration-none" title="Ver / Editar Avaliação">
+                                        ★ Nota: {{ $item->avaliacao->nota }} ({{ ucfirst($item->avaliacao->longevidade) }})
+                                    </a>
+                                @else
+                                    <a href="{{ route('avaliacoes.create', ['venda_id' => $item->id, 'perfume_id' => $item->perfume_id, 'autor' => $item->usuario_id]) }}" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size: 0.8rem;">
+                                        + Avaliar
+                                    </a>
+                                @endif
+                            </td>
                             <td class="text-end">
                                 <a href="{{ route('vendas.edit', $item->id) }}" class="btn btn-sm btn-warning">Editar</a>
                                 <form action="{{ route('vendas.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tens a certeza que pretendes eliminar este registo?')">
@@ -80,7 +95,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted py-4">Nenhuma venda encontrada.</td>
+                            <td colspan="6" class="text-center text-muted py-4">Nenhuma venda encontrada.</td>
                         </tr>
                     @endforelse
                 </tbody>

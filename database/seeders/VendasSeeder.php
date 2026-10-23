@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Venda;
 
@@ -13,6 +12,7 @@ class VendasSeeder extends Seeder
      */
     public function run(): void
     {
-        Venda::factory()->count(20)->create();
+        // Cria vendas e cada venda gera automaticamente sua avaliação 1:1 via VendaFactory
+        Venda::factory()->count(50)->create();
     }
 }
