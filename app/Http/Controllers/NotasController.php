@@ -10,7 +10,7 @@ class NotasController extends Controller
 {
     public function index()
     {
-        $dados = Notas::all();
+         $dados= Notas::all();
 
         return view('notas.list', compact('dados'));
     }
